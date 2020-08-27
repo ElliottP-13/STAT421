@@ -10,7 +10,7 @@
 \maketitle
 
 \problem{1.22}
-Prove that the sum of the deviations of a set of measurments about their mean is equal to zero:
+Prove that the sum of the deviations of a set of measurements about their mean is equal to zero:
 $$\sum_{i=1}^n (y_i - \bar{y}) = 0$$
 \hrule
 
@@ -18,7 +18,6 @@ $$\sum_{i=1}^n (y_i - \bar{y}) = 0$$
 We show that the sum of the deviations of a set about the mean is equal to zero. We first give the definition of $\bar{y} = 1/n \sum_{i=1}^n y_i$. For conciseness, we also let $S = \sum_{i=1}^n y_i$
 
 \begin{align*}
-
 \sum_{i=1}^n (y_i - \bar{y}) &= 0\\
 \sum_{i=1}^n y_i - \sum_{i=1}^n \bar{y} &= 0\\
 S - \sum_{i=1}^n (1/n \sum_{i=1}^n y_i) &= 0\\
@@ -71,12 +70,20 @@ families are surveyed and that each one reveals whether its income exceeded \$43
 
 	\item We say that $E$ represents if a family exceeded the median and $N$ if they did not exceed the median income. 
 	
-	$\mathcal{S} = \{EEEE, EEEN, EENE, EENN, ENEE, ENEN, ENNE, ENNN, NEEE, NEEN, NENE, NENN, NNEE, NNEN, NNNE, NNNN\}$
+	\begin{multline*}
+	\mathcal{S} = \{EEEE, EEEN, EENE, EENN, ENEE, ENEN, ENNE, ENNN, \\ 
+	NEEE, NEEN, NENE, NENN, NNEE, NNEN, NNNE, NNNN\}
+	\end{multline*}
+	
+	
 	
 	
 	\item
 	
-	\quad $A = \{EEEE, EEEN, EENE, EENN, ENEE, ENEN, ENNE, NEEE, NEEN, NENE, NNEE\}$
+	\quad \begin{multline*}
+	A = \{EEEE, EEEN, EENE, EENN, ENEE, ENEN, ENNE, NEEE,\\
+	 NEEN, NENE, NNEE\}
+	\end{multline*}	
 	
 	\quad $B = \{EENN, ENEN, ENNE, NEEN, NENE, NNEE\}$
 	
@@ -90,12 +97,13 @@ families are surveyed and that each one reveals whether its income exceeded \$43
 	$P(B) = 1/16 * |B| = 1/16 * 6 = 0.375$ 
 	
 	$P(C) = 1/16 * |C| = 1/16 * 4 = 0.25$ 
-	
-	\problem{6} Do R tutorial.
-	\hrule
-	No questions.
 
 \end{enumerate}
+
+
+\problem{6} Do R tutorial.
+\hrule
+No questions.
 
 \end{document}
 

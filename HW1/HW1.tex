@@ -1,0 +1,102 @@
+\documentclass[11pt]{article}
+\usepackage{../EllioStyle}
+
+\title{Homework 1}
+\author{Elliott Pryor}
+\date{28 Aug 2020}
+
+
+\begin{document}
+\maketitle
+
+\problem{1.22}
+Prove that the sum of the deviations of a set of measurments about their mean is equal to zero:
+$$\sum_{i=1}^n (y_i - \bar{y}) = 0$$
+\hrule
+
+\begin{proof}
+We show that the sum of the deviations of a set about the mean is equal to zero. We first give the definition of $\bar{y} = 1/n \sum_{i=1}^n y_i$. For conciseness, we also let $S = \sum_{i=1}^n y_i$
+
+\begin{align*}
+
+\sum_{i=1}^n (y_i - \bar{y}) &= 0\\
+\sum_{i=1}^n y_i - \sum_{i=1}^n \bar{y} &= 0\\
+S - \sum_{i=1}^n (1/n \sum_{i=1}^n y_i) &= 0\\
+S - 1/n \sum_{i=1}^n S) &= 0\\
+S - 1/n * n * S) &= 0\\
+S - S &= 0\\
+0 &= 0
+\end{align*}
+
+\end{proof}
+
+
+
+
+\problem{2.23}
+If A and B are events and $B \subset A$, why is it ``obvious" that $P(B) \leq P(A)$.
+\hrule
+
+Qualitatively if $B \subset A$ then everything in $B$ is also in $A$. So the probability that $A$ happens must be at least as big as $B$. 
+
+Mathematically, we can also show this.
+\begin{proof}
+ We let $C = A \setminus B$. Then $A = B \cup C$, and $B \cap C = \emptyset$. So we can use the third axiom of probability to state that $P(A) = P(B) + P(C)$. Well $P(A) = P(B) + P(C) \geq P(B)$ as required.
+\end{proof}
+ 
+ 
+ 
+ 
+\problem{2.33}
+The Bureau of the Census reports that the median family income for all families in the United
+States during the year 2003 was \$43,318. That is, half of all American families had incomes
+exceeding this amount, and half had incomes equal to or below this amount. Suppose that four
+families are surveyed and that each one reveals whether its income exceeded \$43,318 in 2003
+\begin{enumerate}[\textbf{a}]
+ 	\item List the points in the sample space
+ 	\item Identify the simple events in each of the following spaces.
+ 	
+ 	
+		\quad $A$: \quad At least two had incomes exceeding \$43,318 	
+ 	
+ 		\quad $B$: \quad Exactly two had incomes exceeding \$43,318
+ 	
+ 		\quad $C$: \quad Exactly two had incomes less than or equal to \$43,318
+ 	
+ 	\item Make use of the given interpretation for the median to assign probabilities to simple events and find $P(A), P(B), P(C)$  
+\end{enumerate}
+\hrule
+
+\begin{enumerate}[a]
+
+	\item We say that $E$ represents if a family exceeded the median and $N$ if they did not exceed the median income. 
+	
+	$\mathcal{S} = \{EEEE, EEEN, EENE, EENN, ENEE, ENEN, ENNE, ENNN, NEEE, NEEN, NENE, NENN, NNEE, NNEN, NNNE, NNNN\}$
+	
+	
+	\item
+	
+	\quad $A = \{EEEE, EEEN, EENE, EENN, ENEE, ENEN, ENNE, NEEE, NEEN, NENE, NNEE\}$
+	
+	\quad $B = \{EENN, ENEN, ENNE, NEEN, NENE, NNEE\}$
+	
+	\quad $C = \{EEEN, EENE, ENEE, NEEE\}$
+	
+	
+	\item By definition of the median value, exactly half of the individuals will have incomes exceeding the median amount. So the probability that a family has $E$ is $0.5$. We assume that all families are equally likely to be above the median value. So all simple events have a probability of $0.5 * 0.5 *0.5 * 0.5 = 1/16$.
+	
+	$P(A) = 1/16 * |A| = 1/16 * 11 = 0.6875$ 
+	
+	$P(B) = 1/16 * |B| = 1/16 * 6 = 0.375$ 
+	
+	$P(C) = 1/16 * |C| = 1/16 * 4 = 0.25$ 
+	
+	\problem{6} Do R tutorial.
+	\hrule
+	No questions.
+
+\end{enumerate}
+
+\end{document}
+
+

@@ -105,6 +105,51 @@ families are surveyed and that each one reveals whether its income exceeded \$43
 \hrule
 No questions.
 
+\problem{7}
+
+Generate a random sample of size 24 from a normal distribution with mean = 21 and sd = 3, then add a 25th observation equal to 52.2
+
+\begin{enumerate}[a.]
+
+\item Construct a histogram
+\item Calculate sample mean ($\bar{y}$) and standard deviation ($s$) for the whole sample ($n=25$)
+\item Calculate the intervals $\bar{y} \pm ks$ for $k = 1,2,\text{ and } 3$.
+\item Calculate the range of the set of values. Calculate an approximate value for $s$ using the calculated range and the empirical rule. Compare this to the $s$ you
+calculated in (a).
+\item Repeat part (a) after excluding the outlying observation. Are you surprised by how much the result changed?
+\end{enumerate}
+\hrule
+
+\begin{enumerate}[a.]
+
+\item 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=1]{./pics/histWithOutlier.png}
+    \caption{Histogram of all 25 samples}
+    \label{fig:histWith}
+\end{figure}
+
+\item $\bar{y} = 22.86172$, $s = 6.746023$
+
+\item The intervals are $[16.115693, 29.60774], [9.369670, 36.35376], [2.623647, 43.09979]$ for $k = 1, 2, 3$ respectively.
+
+\item The counts are 24 for every interval set, which is 96\%. This is more than expected from the empirical rule for the first two intervals which expects 68\%, 95\%, 99.7\% of the data in each interval. However, with only 25 sample points the measured percentage cannot go higher unless 100\% of the data points fall within a region.
+
+\item  range $= 36.26181$. We then use the range rule $range = 4 * s$ to estimate $s$. We get $s = 9.065452$ using our estimate.
+
+\item No I am not surprised. The outlier was very far removed from all of the other data points so significantly stretched the standard deviation. This makes the boxes bigger in the histogram so you cannot see the smaller variations within the 24 sample points.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=1]{./pics/histWithoutOutlier.png}
+    \caption{Histogram with only 24 samples (no outlier)}
+    \label{fig:histWithout}
+\end{figure}
+
+\end{enumerate}
+
 \end{document}
 
 

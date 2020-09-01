@@ -1,0 +1,54 @@
+---
+title: "Homework # 2"
+author: "Elliott Pryor"
+date: "9/1/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Problem 1
+## Statement
+There are 20 trees in a plot and you must randomly choose 4 of the trees to take measurements on for a study.
+1. In how many ways could you select the 4 trees?
+
+2. Four of the trees are aspens and the rest are pines. In how many ways can you select 4 trees such that exactly two are aspen?
+
+3. Now, assume you have to measure diameter at breast height for every tree in the plot. You decide it would be a good idea to do them in random order in case your measurements change as you become tired near the end of the day.
+
+    a. In how many possible ways can you visit the 20 trees in the plot?
+    b. If you randomly select the order in which you visit the 20 trees, what is the probability that you visit all four aspen trees back to back (with no pine trees in between)?
+    
+\hrule
+
+## Solution
+1. $20 \choose 4$ = $\frac{20!}{16!4!} = \frac{20 * 19 * 18 * 17}{24} = 4845$
+
+
+2. $16 \choose 2$ = $\frac{16!}{14!2!} = \frac{16 * 15}{2} = 120$
+
+3. 
+    a. $20! = 2.4329 * 10^{18}$
+    b. (# Num of adjacent subsets of size 4) * (probability that a set of 4 trees is all aspen) = (Probability we visit all aspens in a row)
+    
+    \quad\quad  $(16) * (\frac{4}{20} * \frac{3}{20} * \frac{2}{20} * \frac{1}{20}) = 0.024$
+    
+    
+# Problem 2
+## Statement
+
+The eight-member Human Relations Advisory Board of Gainesville, Florida, considered the complaint of a woman who claimed discrimination based on gender, on the part of a local company. The board, composed of five women and three men, voted 5-3 in favor of the plaintiff, the five women voting in favor of the plaintiff, the three men against. The attorney representing the company appealed the board’s decision by claiming gender bias on the part of the board members. Is gender bias a legitimate argument? Explain why or why not, and provide statistical evidence to support your reasoning
+
+\hrule
+
+## Solution
+
+We consider the probability that out of 8 people, 5 female, 3 male, we end up with a 5:3 split exactly along the gender lines. We assume that there is no gender bias so each individual is equally likely to vote yes and no. We order the individuals: $f_1, f_2, f_3, f_4, f_5, m_1, m_2, m_3$. The probability that each individual votes yes or no $P(Y_j) = P(N_j) = 0.5$. In this scenario we have: $Y_{f_1},Y_{f_2},Y_{f_3},Y_{f_4},Y_{f_5},N_{m_1},N_{m_2},N_{m_3}$. This is the only possible configuration of votes. The probability this occurs is $1/2 * 1/2 * 1/2 * 1/2 * 1/2 * 1/2 * 1/2 * 1/2 = (1/2)^8 = 1/256 = 0.0039$. This is exceedingly unlikely to occur randomly. So yes gender bias is a legitimate argument.
+
+
+
+
+
+

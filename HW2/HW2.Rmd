@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Problem 1
 ## Statement
 There are 20 trees in a plot and you must randomly choose 4 of the trees to take measurements on for a study.
+
 1. In how many ways could you select the 4 trees?
 
 2. Four of the trees are aspens and the rest are pines. In how many ways can you select 4 trees such that exactly two are aspen?
@@ -49,6 +50,53 @@ We consider the probability that out of 8 people, 5 female, 3 male, we end up wi
 
 
 
+# Problem 3
+## Statement
+
+If $m$ students show up at random in a classroom, what is the probability that at least two will have the same birthday? You may assume, there are 365 days in every year (ignore leap years) and everyday of the year is equally likely to be a birthday.
+
+1. A function to calculate the probability for a specific value of $m$, is provided in birthday.R under content. Use the function to compute the probability for different values of $m$ between 2 (you’d need at least two people in a room to have a shared birthday) and 100 and plot the results. Discuss what your plot shows.
+
+2. Use your results to answer the following question: How many people need to be in the room to make it more likely than not that at least two people share the same birthday? That is, what is $m$ such that $P(A=\text{at least two people share the same birthday})>0.5$
+\hrule
+
+## Solution
+
+1. The provided function takes a value of $m$ and computes the probability of at least 2 of the $m$ students sharing a birthday. 
+
+```{r}
+bday_fun <- function(m){
+  # compute the probability of complement of A on log scale
+  l_prob_a_c <- lfactorial(365) - lfactorial(365-m) - m*log(365)
+  # find probability of A
+  prob_a <- 1- exp(l_prob_a_c)
+  # return probability of A
+  return(prob_a)
+}
+```
+
+We can then apply the function to plot the results
+
+```{r tests, fig.cap="Probability that two people will share a birthday with varying numbers of people"}
+mVals <- 2:100
+probs <- bday_fun(mVals)
+plot(x = mVals, y = probs, xlab = "# of people in the room", 
+     ylab = "Probability of at least one shared bday (P(A))")
+```
 
 
+Figure 1 shows the probability that two people will share a birthday. This results in a roughly logisistic pattern. With few people the probability is very low that two people will share a birthday. The probability that two people will share a birthday increases very rapidly between [10, 40] after which it remains close to 1. 
 
+2. We can compute how many people it takes until we expect at least one shared birthday.
+
+```{r minPeople}
+
+greatProb <- probs > 0.5
+indx <- min(which(greatProb, arr.ind = TRUE))
+# by our construction of probs, index 1 --> 2 people, index 2 -->3 people, index i --> i+1 people
+people <- indx + 1
+people
+
+```
+
+So the minimum number of people required, such that the probability of at least two people sharing a birthday is greater than 50%, is 23 people.

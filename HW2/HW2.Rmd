@@ -32,9 +32,9 @@ There are 20 trees in a plot and you must randomly choose 4 of the trees to take
 
 3. 
     a. $20! = 2.4329 * 10^{18}$
-    b. (# Num of adjacent subsets of size 4) * (probability that a set of 4 trees is all aspen) = (Probability we visit all aspens in a row)
+    b. $\frac{\text{(How many ways to put 4 trees next to eachother) * (How many ways to arrange 4 trees) * (How many ways to arrange the others)}}{\text{Total number of ways to visit trees}}$
     
-    \quad\quad  $(16) * (\frac{4}{20} * \frac{3}{20} * \frac{2}{20} * \frac{1}{20}) = 0.024$
+    \quad\quad  $\frac{(17) * (4!) * 16!}{20!} = 0.0035$
     
     
 # Problem 2

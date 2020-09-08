@@ -1,0 +1,60 @@
+---
+title: "Homework # 3"
+author: "Elliott Pryor"
+date: "9/11/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Problem 1
+## Statement
+
+Abott Architect SARS-CoV-2 IgG is a serology test for the antibodies or SARS-CoV2 (the virus that causes COVID-19) that is manufactured by Abbott pharmaceuticals. If a person has antibodies for the virus, it can indicate that they will not fall ill from the same virus again (although the research related to immunity after exposure to COVID-19 is still developing). Abbott claims that their test does at least this well with respect detecting antibodies when they are there: 95% of the time the test will detect antibodies when they are there (i.e., the true-positive rate or sensitivity of the test is at the very least 0.95), and detects antibodies in a person that does not have them 1% of the time (i.e., the false-positive rate of the test is at most 0.01). Seethe FDA fact sheet here (click this text it’s a hyperlink).It is impossible to know at this time the rate of prevalence of COVID-19 in any given community (the data to estimate this just don’t exist yet), so we’ll consider a few different scenarios. Let’s focus on the MSU community, and let’s assume that within the MSU community 1 in 100 people have been exposed to COVID-19 (i.e., they have recovered from the illness)
+
+1. If a randomly selected MSU community member tests positive for the antibodies (using Abbott’s test) what is the probability that the person had actually suffered from COVID-19 and recovered (i.e., truly has the antibodies to SARS-Cov-2)?
+
+2. If the rate of exposure within the MSU community was instead 10%,what is the probability that a randomly selected person had actually suffered from COVID-19 and recovered?
+
+3. Briefly discuss how the results in parts (a) and (b). Use your results to discuss why it is imperative (from a public health standpoint) that we have a good estimate of the true rate of exposure (i.e., those who have been ill and then recovered) within the MSU community. One idea would be to discuss this with respect to the “trustworthiness” of the test, but that is not the only way to address this question!
+
+\hrule
+
+## Solution
+
+
+# Problem 2
+## Statement
+
+An appliance store receives a shipment of 30 microwave ovens, 5 of which are (unknown to the manager) defective. The store manager selects 4 ovens at random, without replacement, and tests to see if they are defective. Let $X$= number of defectives found
+
+1. Find the probability distribution of $X$ and plot it
+2. Find the cumulative distribution of $X$ and plot it
+3. Find $E(X)$ and $Var(X)$
+
+\hrule
+
+##Solution
+
+# Problem 3
+## Statement
+
+Next week (week of 9/13/20) we will be discussing commonly used discrete distributions and their applications. One such distribution that we have already used is the Bernoulli(p) distribution. In fact, we could have used the Bernoulli distribution to quickly simulate trials of 100 coin flips instead of using the sample function. We can also use random draws from the Bernoulli distribution to generate realizations from the Binomial(n,p), Geometric(p), Negative Binomial(r,p), and even the Poisson(λ)distributions. Let X be a Bernoulli(p) random variable with probability of success p, and W be a RV representing the waiting time until the first head occurs (i.e., the number of tosses until the first head occurs.) Work through the example code BEFORE attempting the following.
+
+1. Write a function that generates 1 realization of W; assume p= 0.1. This will require some modifications to rg_fun but the function will be very similar! Then, use the replicate function to generate 1000 realizations of W
+
+2. Display your results from part (a) in a table and a plot.  Comment on the“reasonableness” of your results. Did anything surprise you?
+
+\hrule
+
+## Solution
+
+
+
+
+
+
+
+

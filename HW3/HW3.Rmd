@@ -12,17 +12,29 @@ knitr::opts_chunk$set(echo = TRUE)
 # Problem 1
 ## Statement
 
-Abott Architect SARS-CoV-2 IgG is a serology test for the antibodies or SARS-CoV2 (the virus that causes COVID-19) that is manufactured by Abbott pharmaceuticals. If a person has antibodies for the virus, it can indicate that they will not fall ill from the same virus again (although the research related to immunity after exposure to COVID-19 is still developing). Abbott claims that their test does at least this well with respect detecting antibodies when they are there: 95% of the time the test will detect antibodies when they are there (i.e., the true-positive rate or sensitivity of the test is at the very least 0.95), and detects antibodies in a person that does not have them 1% of the time (i.e., the false-positive rate of the test is at most 0.01). Seethe FDA fact sheet here (click this text it’s a hyperlink).It is impossible to know at this time the rate of prevalence of COVID-19 in any given community (the data to estimate this just don’t exist yet), so we’ll consider a few different scenarios. Let’s focus on the MSU community, and let’s assume that within the MSU community 1 in 100 people have been exposed to COVID-19 (i.e., they have recovered from the illness)
+Abott Architect SARS-CoV-2 IgG is a serology test for the antibodies or SARS-CoV2 (the virus that causes COVID-19) that is manufactured by Abbott pharmaceuticals. If a person has antibodies for the virus, it can indicate that they will not fall ill from the same virus again (although the research related to immunity after exposure to COVID-19 is still developing). Abbott claims that their test does at least this well with respect detecting antibodies when they are there: 95% of the time the test will detect antibodies when they are there (i.e., the true-positive rate or sensitivity of the test is at the very least 0.95), and detects antibodies in a person that does not have them 1% of the time (i.e., the false-positive rate of the test is at most 0.01). See the FDA fact sheet here (click this text it’s a hyperlink). It is impossible to know at this time the rate of prevalence of COVID-19 in any given community (the data to estimate this just don’t exist yet), so we’ll consider a few different scenarios. Let’s focus on the MSU community, and let’s assume that within the MSU community 1 in 100 people have been exposed to COVID-19 (i.e., they have recovered from the illness)
 
 1. If a randomly selected MSU community member tests positive for the antibodies (using Abbott’s test) what is the probability that the person had actually suffered from COVID-19 and recovered (i.e., truly has the antibodies to SARS-Cov-2)?
 
-2. If the rate of exposure within the MSU community was instead 10%,what is the probability that a randomly selected person had actually suffered from COVID-19 and recovered?
+2. If the rate of exposure within the MSU community was instead 10%, what is the probability that a randomly selected person had actually suffered from COVID-19 and recovered?
 
 3. Briefly discuss how the results in parts (a) and (b). Use your results to discuss why it is imperative (from a public health standpoint) that we have a good estimate of the true rate of exposure (i.e., those who have been ill and then recovered) within the MSU community. One idea would be to discuss this with respect to the “trustworthiness” of the test, but that is not the only way to address this question!
 
 \hrule
 
 ## Solution
+
+1. We know that the person tested positive for the antibodies. So we are looking for P(covid $|$ antibodies). Let $C$ be the event that someone has covid, and $A$ be the event that they test positive for antibodies. Clearly $C, \bar{C}$ form a partition of the sample space. So using Bayes rule:
+
+$$P(C | A) = \frac{P(A | C) P(C)}{P(A | C)P(C) + P(A | \bar{C}) P(\bar{C})} = \frac{0.95 * 0.01}{0.95 * 0.01 + 0.01 * 0.99} = 0.4897 = 48.97\% $$
+2. We use the same equation as above, but with a higher rate of exposure.
+
+$$P(C | A) = \frac{P(A | C) P(C)}{P(A | C)P(C) + P(A | \bar{C}) P(\bar{C})} = \frac{0.95 * 0.10}{0.95 * 0.10 + 0.01 * 0.90} = 0.9135 = 91.35\% $$
+3. Clearly the probability is vastly different depending on the exposure rate in 1. and 2. So estimating the true exposure rate is vital for determining the reliability of the test. At low exposure rates, the relatively high false positive rate and the very high number of healthy individuals drives the equation. The $P(A|\bar{C})P(\bar{C})$ term is much larger than the $P(A|C)P(C)$ term. However as the exposure rate increases, this term decreases rapidly, and the expression relies on the high true positive rate as the driving factor. Figure 1 shows that the probability that an individual has had COVID (reliability of the test) varies sharply with the exposure rate. So a small change in exposure rate can drastically change the probability that a positive individual has had COVID. 
+
+```{r covid, fig.cap="Probability that a person is positive for COVID-19 with varying exposure rates"}
+curve((0.95 * x / (0.95 * x + 0.01 * (1-x))), 0, 1, ylab = "Probability individual has had COVID", xlab = "Exposure rate")
+```
 
 
 # Problem 2
@@ -38,10 +50,77 @@ An appliance store receives a shipment of 30 microwave ovens, 5 of which are (un
 
 ##Solution
 
+1. We first list the support of $X$: $S_X = \{0, 1, 2, 3, 4\}$. We first compute the probabilities:
+
+$P(X = 0) = \frac{25 \choose 4}{30 \choose 4} = 0.4616$
+
+$P(X= 1) = \frac{{5 \choose 1}{26 \choose 3}}{30 \choose 4}= 0.4196$
+
+$P(X= 2) = \frac{{5 \choose 2}{26 \choose 2}}{30 \choose 4}= 0.1095$
+
+$P(X= 3) = \frac{{5 \choose 3}{26 \choose 1}}{30 \choose 4}= 0.0091$
+
+$P(X= 4) = \frac{{5 \choose 4}}{30 \choose 4}= 0.0002$
+
+then $P(X = \text{other}) = 0$
+
+So $$f_X = \begin{cases}
+0.4616 & x=0\\
+0.4196 & x=1\\
+0.1095 & x=2\\
+0.0091 & x=3\\
+0.0002 & x=4\\
+0 & \text{otherwise}
+\end{cases}$$
+
+
+```{r prob distrib, fig.cap="Probability Distribution of X"}
+P <- function(x){
+  if(x == 0){return(0.4616)}
+  if(x == 1){return(0.4196)}
+  if(x == 2){return(0.1095)}
+  if(x == 3){return(0.0091)}
+  if(x == 4){return(0.002)}
+  
+  return(0)
+}
+vP <- Vectorize(P)
+curve(vP, from = -1, to = 5, xlab = "Number of defective microwaves", ylab = "Probability", n= 6001)
+
+```
+
+2. 
+$$F_X = \begin{cases}
+  0 & x < 0\\
+  0.4616 & 0 \leq x < 1\\
+  0.8812 & 1 \leq x < 2\\
+  0.9907 & 2 \leq z < 3\\
+  0.9998 & 3 \leq x < 4\\
+  1 & 4 \leq x
+\end{cases}$$
+
+
+```{r cumulative distrib, fig.cap="Cumulative Distribution of X"}
+P <- function(x){
+  if(x < 0){return(0)}
+  if(0 <= x && x < 1){return(0.4616)}
+  if(1 <= x && x < 2){return(0.8812)}
+  if(2 <= x && x < 3){return(0.9907)}
+  if(3 <= x && x < 4){return(0.9998)}
+  if(x >= 4){return(1)}
+  
+  return(0)
+}
+vP <- Vectorize(P)
+curve(vP, from = -1, to = 5, xlab = "Number of defective microwaves", ylab = "Cumulative Probability", n= 6001)
+
+```
+
+
 # Problem 3
 ## Statement
 
-Next week (week of 9/13/20) we will be discussing commonly used discrete distributions and their applications. One such distribution that we have already used is the Bernoulli(p) distribution. In fact, we could have used the Bernoulli distribution to quickly simulate trials of 100 coin flips instead of using the sample function. We can also use random draws from the Bernoulli distribution to generate realizations from the Binomial(n,p), Geometric(p), Negative Binomial(r,p), and even the Poisson(λ)distributions. Let X be a Bernoulli(p) random variable with probability of success p, and W be a RV representing the waiting time until the first head occurs (i.e., the number of tosses until the first head occurs.) Work through the example code BEFORE attempting the following.
+Next week (week of 9/13/20) we will be discussing commonly used discrete distributions and their applications. One such distribution that we have already used is the Bernoulli(p) distribution. In fact, we could have used the Bernoulli distribution to quickly simulate trials of 100 coin flips instead of using the sample function. We can also use random draws from the Bernoulli distribution to generate realizations from the Binomial(n,p), Geometric(p), Negative Binomial(r,p), and even the Poisson($\lambda$) distributions. Let X be a Bernoulli(p) random variable with probability of success p, and W be a RV representing the waiting time until the first head occurs (i.e., the number of tosses until the first head occurs.) Work through the example code BEFORE attempting the following.
 
 1. Write a function that generates 1 realization of W; assume p= 0.1. This will require some modifications to rg_fun but the function will be very similar! Then, use the replicate function to generate 1000 realizations of W
 
@@ -51,10 +130,26 @@ Next week (week of 9/13/20) we will be discussing commonly used discrete distrib
 
 ## Solution
 
+1. 
+Below is the modified rg_fun
+```{r rg_fun}
+rg_fun <-function() {# generate a sequence of 100 independent Bernoulli trials
+  samp <-rbinom(n = 100, size = 1, prob = 0.5)# find the location of the 2nd 1 - corresponds to the number of trials until
+  # the second success
+  g <-which(samp==1)[1]
+  return(g)}
+
+g_vec <-replicate(n = 1000, expr =rg_fun())
+
+```
+2. Now we show the results from (1.)
 
 
+```{r table, fig.cap="Table of Results"}
+table(g_vec)
+tab_g  <-tabulate(g_vec,max(g_vec))
 
+plot(tab_g, type = "h",xlab = "w",ylab = "Frequency (W = w)")# add points at the observed frequencies
+points(1:max(g_vec), tab_g, pch = 20)
 
-
-
-
+```

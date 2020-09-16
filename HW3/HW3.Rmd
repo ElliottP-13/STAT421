@@ -6,7 +6,7 @@ output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
 ```
 
 # Problem 1
@@ -27,13 +27,20 @@ Abott Architect SARS-CoV-2 IgG is a serology test for the antibodies or SARS-CoV
 1. We know that the person tested positive for the antibodies. So we are looking for P(covid $|$ antibodies). Let $C$ be the event that someone has covid, and $A$ be the event that they test positive for antibodies. Clearly $C, \bar{C}$ form a partition of the sample space. So using Bayes rule:
 
 $$P(C | A) = \frac{P(A | C) P(C)}{P(A | C)P(C) + P(A | \bar{C}) P(\bar{C})} = \frac{0.95 * 0.01}{0.95 * 0.01 + 0.01 * 0.99} = 0.4897 = 48.97\% $$
+
+This means that with a positive test result, there is only a 48.97\% chance that they actually have had covid. 
+
 2. We use the same equation as above, but with a higher rate of exposure.
 
 $$P(C | A) = \frac{P(A | C) P(C)}{P(A | C)P(C) + P(A | \bar{C}) P(\bar{C})} = \frac{0.95 * 0.10}{0.95 * 0.10 + 0.01 * 0.90} = 0.9135 = 91.35\% $$
+
+The higher exposure rate significantly changed the probability that they actually had covid. 
+
 3. Clearly the probability is vastly different depending on the exposure rate in 1. and 2. So estimating the true exposure rate is vital for determining the reliability of the test. At low exposure rates, the relatively high false positive rate and the very high number of healthy individuals drives the equation. The $P(A|\bar{C})P(\bar{C})$ term is much larger than the $P(A|C)P(C)$ term. However as the exposure rate increases, this term decreases rapidly, and the expression relies on the high true positive rate as the driving factor. Figure 1 shows that the probability that an individual has had COVID (reliability of the test) varies sharply with the exposure rate. So a small change in exposure rate can drastically change the probability that a positive individual has had COVID. 
 
 ```{r covid, fig.cap="Probability that a person is positive for COVID-19 with varying exposure rates"}
-curve((0.95 * x / (0.95 * x + 0.01 * (1-x))), 0, 1, ylab = "Probability individual has had COVID", xlab = "Exposure rate")
+curve((0.95 * x / (0.95 * x + 0.01 * (1-x))), 0, 1, ylab = "Probability individual has had COVID",
+      xlab = "Exposure rate")
 ```
 
 
@@ -48,19 +55,20 @@ An appliance store receives a shipment of 30 microwave ovens, 5 of which are (un
 
 \hrule
 
-##Solution
+## Solution
 
 1. We first list the support of $X$: $S_X = \{0, 1, 2, 3, 4\}$. We first compute the probabilities:
 
-$P(X = 0) = \frac{25 \choose 4}{30 \choose 4} = 0.4616$
+$P(X= 0) = \frac{{25\choose 4}} {{30 \choose 4}} = 0.4616$ - The probability that no microwaves are defective.
 
-$P(X= 1) = \frac{{5 \choose 1}{26 \choose 3}}{30 \choose 4}= 0.4196$
+$P(X= 1) = \frac{{5 \choose 1} {26 \choose 3} } {{30 \choose 4}}= 0.4196$ - The probability that exactly one microwave is defective.
 
-$P(X= 2) = \frac{{5 \choose 2}{26 \choose 2}}{30 \choose 4}= 0.1095$
+$P(X= 2) = \frac{{5 \choose 2}{26 \choose 2}} {{30 \choose 4}}= 0.1095$ - The probability that exactly two microwaves are defective.
 
-$P(X= 3) = \frac{{5 \choose 3}{26 \choose 1}}{30 \choose 4}= 0.0091$
+$P(X= 3) = \frac{{5 \choose 3}{26 \choose 1}} {{30 \choose 4}}= 0.0091$ - The probability that exactly three microwaves are defective.
 
-$P(X= 4) = \frac{{5 \choose 4}}{30 \choose 4}= 0.0002$
+$P(X= 4) = \frac{{5 \choose 4}} {{30 \choose 4}}= 0.0002$ - The probability that all four microwaves are defective.
+
 
 then $P(X = \text{other}) = 0$
 
@@ -72,6 +80,8 @@ So $$f_X = \begin{cases}
 0.0002 & x=4\\
 0 & \text{otherwise}
 \end{cases}$$
+
+Figure 2 shows a plot of the probability distribution of X. The probability spikes are at single point values. This makes physical sense as it isn't possible to have part of a microwave broken, so all the probabilities are discrete and occur at integer values. 
 
 
 ```{r prob distrib, fig.cap="Probability Distribution of X"}
@@ -100,6 +110,10 @@ $$F_X = \begin{cases}
 \end{cases}$$
 
 
+Figure 3 shows a plot of the cumulative distribution of X. This is the probability of $P(X <= x)$, or the probability that fewer than $x$ microwaves are broken. As this goes to infinity this probability is 1. This is good, otherwise there would be some probability that infinite microwaves are broken and that is not physically possible as we must have 0, 1, 2, 3, or 4 defective microwaves in the sample.
+
+
+
 ```{r cumulative distrib, fig.cap="Cumulative Distribution of X"}
 P <- function(x){
   if(x < 0){return(0)}
@@ -112,10 +126,17 @@ P <- function(x){
   return(0)
 }
 vP <- Vectorize(P)
-curve(vP, from = -1, to = 5, xlab = "Number of defective microwaves", ylab = "Cumulative Probability", n= 6001)
+curve(vP, from = -1, to = 5, xlab = "Number of defective microwaves", 
+      ylab = "Cumulative Probability", n= 6001)
 
 ```
 
+
+3. By definition, $E(X) = \sum_{x \in S_X} x * P(X = x) = \sum_{x \in S_X} x * f_X(x)$. So we have $E(X) = 0 * 0.4616 + 1 * 0.4196 + 2 * 0.1095 + 3 * 0.0091 + 4 * 0.0002 = 0.6667$.   So we expect 0.6667 microwaves to be broken, or in other words, the average number of broken microwaves is 0.6667
+
+We can then compute the variance of $X$. $V(x) = E(X^2) - \bar{x}^2$ where $\bar{x}$ is the mean. $\bar{x} = E(x)$ so $V(x) = E(X^2) - (E(X))^2$. We can compute $E(X^2) = \sum_{x \in S_X} y^2 f_Y(y) = 0 * 0.4616 + 1 * 0.4196 + 4 * 0.1095 + 9 * 0.0091 + 16 * 0.0002 = 0.9427$. So the variance is $V(X)= 0.9427 - 0.6667 = 0.276$. This value is fairly small, so we do not expect much deviation from the mean. Ie. most of the samples of microwaves will be close to the mean value. 
+
+This means that most of the time only 0 or 1 microwave will be defective. Which is probably not good for the store as there is a high likeli-hood that defective microwaves will go untested.
 
 # Problem 3
 ## Statement
@@ -131,7 +152,7 @@ Next week (week of 9/13/20) we will be discussing commonly used discrete distrib
 ## Solution
 
 1. 
-Below is the modified rg_fun
+Below is the modified rg_fun. We only modified the probability in the binomial function, as well as the index of the which() function to select the first occurence.
 ```{r rg_fun}
 rg_fun <-function() {# generate a sequence of 100 independent Bernoulli trials
   samp <-rbinom(n = 100, size = 1, prob = 0.5)# find the location of the 2nd 1 - corresponds to the number of trials until
@@ -142,10 +163,10 @@ rg_fun <-function() {# generate a sequence of 100 independent Bernoulli trials
 g_vec <-replicate(n = 1000, expr =rg_fun())
 
 ```
-2. Now we show the results from (1.)
+2. Now we show the results from (1.). It was strange seeing how much smaller the maximum number of observed runs there were when compared to the example code where probability of heads was 0.2. This difference makes sense. The results are fairly expected. For the first flip we have almost 1/2 the flips being heads, then 1/4, then 1/8, etc. This is roughly what we would expect of a fair coin. 
 
 
-```{r table, fig.cap="Table of Results"}
+```{r table, fig.cap="Plot of Results"}
 table(g_vec)
 tab_g  <-tabulate(g_vec,max(g_vec))
 

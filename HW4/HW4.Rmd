@@ -1,0 +1,81 @@
+---
+title: "Homework # 4"
+author: "Elliott Pryor"
+date: "9/18/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
+```
+
+# Problem 1
+## Statement
+
+A person is deciding whether to go on hike A or hike B this weekend. Let $t$ be the number of hours in the hike, $Y_1$ be the number of snack stops needed for hike A, and $Y_2$ be the number of snack stops for hike B. Let, $E(Y_1) = 0.75t$, $Var(Y_1) = 0.75t$, $E(Y_2) = 0.50t$, and $Var(Y2) = 0.50t$. The cost of going on hike A is $C_A(t) = 5t+ 10Y^2_1$,and the cost of going on hike B is $C_B(t) = 3t+ 10Y^2_2$. Which hike minimizes the expected cost if the hike A takes 2 hours, and B takes 10 hrs
+
+\hrule
+
+## Solution
+
+
+
+# Problem 2
+## Statement
+
+Suppose that Y is a binomial random variable based on n trials with success probability p and consider $Y^* = n-Y*$
+
+1. Argue that for $y^* = 0, 1, ..., n$
+
+$$P(Y^* = y^*) = P(n - Y = y^*) = P(Y = n - y^*)$$
+
+2. Use the result from (1) to show that
+
+$$P(Y^* = y^*) = {n \choose n-y^*} p^{n - y^*} q^{y^*} = {n \choose y^*} q^{y^*} p^{ n- y^*}$$
+
+3. The result in (2) implies that $Y^*$ has a binomial distribution based on n trials and "success" probability $p^* = p = 1-p$. Why is this result "obvious"?
+
+\hrule
+## Solution
+
+
+# Problem 3
+## Statement
+
+If X is a Geometric random variable, show $P(X=n+k | x > n) = P(X=k)$. Let A be the event of a success on trial n+k, and B be the event the fist success is at least n failures. Use the definition of conditional probability and what you know about infinite geometric series to show the equality. Provide an explanation for why this is called the memory less property of the geometric distribution.
+HINT: Recall, if $A \subset B \implies P(A \cap B) = P(A)$
+\hrule
+## Solution
+
+
+
+
+# Problem 4
+## Statement
+
+First, run the example R code provided,then answer the following question. The Bernoulli sample space is the set of all infinite sequences of zeros and ones corresponding to the tosses of a potentially biased coin with probability of heads equal top. Let the random variable,W, be the waiting time until the first head occurs (i.e., the number of tosses until the first head occurs.) Last HW you wrote a function to generate realizations of W assuming $p= 0.1$, and an example of a function that does this is given in the example code for this HWw_fun. Now,
+
+1. Derive the pmf for $W$,$P(W=w)$ for $w= 0,1,2, ....$ This is a re-parameterization of one of the distributions we have discussed in class. What distribution is this?
+
+2. Create a graph comparing the theoretical distribution of W to your simulated version. If necessary, play around with increasing your number of realizations to get the plots to match. Approximately how many realizations do you need to accurately approximate the probability distribution?
+
+3. Compute the average value for W from your simulation using R
+
+4. Calculate the expected value under the true probability distribution (i.e., from the distribution sheet you are creating!). How does it compare to the average calculated via simulation?
+
+\hrule
+## Solution
+
+
+
+
+
+
+# Problem 5 - Extra Credit
+## Statement
+
+Please share any questions or concerns you have with me about how class has been going now that we are through the first unit of material. You may share concerns about the workload, the use of class time, questions about the organization of content on the course website, or anything else that comes to mind that you feel might help you succeed in this course, and explain why. If you have no concerns please share something that is working well for you in this class so far, and explain why.
+
+\hrule
+## Solution
+

@@ -18,12 +18,19 @@ A person is deciding whether to go on hike A or hike B this weekend. Let $t$ be 
 
 ## Solution
 
+We know that $Var(Y) = E(Y^2) - E(Y)^2$ so $E(Y^2) = Var(Y) + E(Y)^2$. 
+
+So $C_A(t) = 5t + 10(E(Y^2_1)) = 5t + 10 (Var(Y) + E(Y)^2) =  5 * 2 + 10(0.75 * 2 + (0.75 * 2)^2) = 47.5$
+
+$C_B(t) = 3 t + 10(E(Y^2_2)) = 3t + 10(Var(Y) + E(Y_2)^2) = 3 * 10 + 10 (0.5 *10 + (0.5 * 10)^2) = 330$
+
+Hike A is expected to be significantly cheaper than hike B. So hike A minimizes the expected cost.
 
 
 # Problem 2
 ## Statement
 
-Suppose that Y is a binomial random variable based on n trials with success probability p and consider $Y^* = n-Y*$
+Suppose that Y is a binomial random variable based on n trials with success probability p and consider $Y^* = n-Y$
 
 1. Argue that for $y^* = 0, 1, ..., n$
 
@@ -38,11 +45,34 @@ $$P(Y^* = y^*) = {n \choose n-y^*} p^{n - y^*} q^{y^*} = {n \choose y^*} q^{y^*}
 \hrule
 ## Solution
 
+1. We are looking for the probability that the event did not happen. We can arrive at the given formula with a simple substitution. It is given that $Y^* = n - Y$. So we substitue this in to get:
+$P(Y^* = y^*) = P(n - Y = y^*)$
+
+We can then re-arrange this (move $n$ to other side and divide by -1) to get 
+$P(n-Y = y^*) = P(Y = n - y^*)$
+
+As required we have:
+
+$$P(Y^* = y^*) = P(n - Y = y^*)= P(Y = n - y^*)$$
+This result makes intuitive sense. $y^*$ is the number of failures. So $n - y^*$ would be the number of successes of a given trial. So the probability that we have no failures is the probability that every one is a success $P(Y^* = 0) = P(Y = n)$ for example. 
+
+2. We know that $f_Y(y) = P(Y = y) = {n \choose y}p^y q ^{n-y}$. So using the third equation $P(Y = n - y^*)$ we arrive at $P(Y = n - y^*) = {n \choose {n - y^*}}p^{n - y^*} q ^{n- (n - y^*)} = {n \choose {n - y^*}}p^{n - y^*} q ^{y^*}$
+The next relation is easy to see if we expand ${n \choose n-y^*} = \frac{n!}{(n - (n-y^*))!(n-y^*)!} = \frac{n!}{(y^*)!(n-y^*)!} = {n \choose y^*}$
+
+So by using this expansion we arrive at:
+
+$$P(Y^* = y^*) = {n \choose {n - y^*}}p^{n - y^*} q ^{y^*} = {n \choose y^*}p^{n - y^*} q ^{y^*}$$
+
+3. This is "obvious" because we are considering a 'success' to be a failure. So we essentially are just redefining what a success means in our space. Since the new probability of a success (which was the probability of failure) is $p' = 1 - p$. 
+
+
+
+
 
 # Problem 3
 ## Statement
 
-If X is a Geometric random variable, show $P(X=n+k | x > n) = P(X=k)$. Let A be the event of a success on trial n+k, and B be the event the fist success is at least n failures. Use the definition of conditional probability and what you know about infinite geometric series to show the equality. Provide an explanation for why this is called the memory less property of the geometric distribution.
+If X is a Geometric random variable, show $P(X=n+k | x > n) = P(X=k)$. Let A be the event of a success on trial n+k, and B be the event that there are at least n failures before the first success. Use the definition of conditional probability and what you know about infinite geometric series to show the equality. Provide an explanation for why this is called the memory less property of the geometric distribution.
 HINT: Recall, if $A \subset B \implies P(A \cap B) = P(A)$
 \hrule
 ## Solution

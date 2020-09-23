@@ -1,0 +1,92 @@
+---
+title: "Homework # 4"
+author: "Elliott Pryor"
+date: "9/18/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
+```
+
+
+
+
+# Problem 1
+## Statement
+
+3.121 -  (clearly show steps to achieve a written probability statement,
+then write the code you would use to find the probability in R/find probability using R)
+
+Let Y denote a random variable that has a Poisson distribution with mean $\lambda$ = 2. Find
+1. P(Y = 4)
+2. P(Y $\geq$ 4)
+3. P(Y $<$ 4)
+4. P(Y $\geq$ 4|Y $\geq$ 2)
+\hrule
+
+## Solution
+
+
+
+
+
+
+# Problem 2
+## Statement 
+
+3.128
+
+Cars arrive at a toll both according to a Poisson process with mean 80 cars per hour. If the
+attendant makes a one-minute phone call, what is the probability that at least 1 car arrives
+during the call?
+
+\hrule
+
+## Solution
+
+
+
+
+
+
+
+
+
+# Problem 3
+## Statement 
+First, run the example R code provided, then answer the following question. On the same
+plotting region, plot the distribution of Y ~ Binomial(n, p) and W ~ Poisson(np)
+for p = 0.1 and varying values of n. Create a maximum of 3 plots and explain what
+you notice about Y and W as n $\to \infty$
+
+\hrule
+
+## Solution
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Extra Credit
+## Statement
+
+3.85
+
+Find E(Y(Y-1)) for a geometric random variable Y by finding $\frac{d^2}{dq^2} (\sum_{y=1}^\infty q^y)$. Use this result to find the variance of Y.
+
+\hrule
+
+## Solution
+

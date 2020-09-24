@@ -1,5 +1,5 @@
 ---
-title: "Homework # 4"
+title: "Homework # 5"
 author: "Elliott Pryor"
 date: "9/18/2020"
 output: pdf_document
@@ -19,15 +19,50 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
 then write the code you would use to find the probability in R/find probability using R)
 
 Let Y denote a random variable that has a Poisson distribution with mean $\lambda$ = 2. Find
-1. P(Y = 4)
-2. P(Y $\geq$ 4)
-3. P(Y $<$ 4)
-4. P(Y $\geq$ 4|Y $\geq$ 2)
+
+ 1. P(Y = 4)
+ 
+ 2. P(Y $\geq$ 4)
+ 
+ 3. P(Y $<$ 4)
+ 
+ 4. P(Y $\geq$ 4|Y $\geq$ 2)
+
 \hrule
 
 ## Solution
 
+$f_Y(y) = \frac{\lambda ^y e^{-\lambda}}{y!}$
 
+```{R poisson_fun}
+poisson_pmf <-function(y) {# generate a sequence of 100 independent Bernoulli trials
+  p <- ((2^y) * exp(-2))/(factorial(y))
+  return(p)}
+```
+
+1. $f_Y(4) = \frac{2 ^4 e^{-2}}{4!} = \frac{16 e^{-2}}{24} = 2/3 e^{-2}$
+
+```{R}
+2/3 * exp(-2)
+```
+
+2. This is the probability of $P(Y \geq 4) = 1 - P(Y < 4) = 1 - (P(Y = 0) + P(Y = 1) + P(Y = 2) + P(Y = 3))$
+```{R}
+1 - (poisson_pmf(0)  + poisson_pmf(1) + poisson_pmf(2) + poisson_pmf(3))
+```
+
+3. $P(Y < 4) = P(Y = 0) + P(Y = 1) + P(Y = 2) + P(Y = 3)$
+
+```{R}
+(poisson_pmf(0)  + poisson_pmf(1) + poisson_pmf(2) + poisson_pmf(3))
+```
+
+4. This is very similar to problem 2, but since we know that $Y \geq 2$ we can ignore the $P(Y = 0)$ and $P(Y = 1)$ terms.
+So we get $P(Y \geq 4 | Y \geq 2) = 1 - (P(Y = 2) + P(Y = 3))$
+
+```{R}
+1 - (poisson_pmf(2) + poisson_pmf(3))
+```
 
 
 
@@ -45,11 +80,11 @@ during the call?
 
 ## Solution
 
+This can be represented as $1 - P(\text{no cars arrive at the booth}) = 1 - f_Y(0)$. 
+We must scale the unit effort from hour to minute, so $\lambda' = \lambda / 60 = 4/3$ 
+Following the Poisson pmf distribution $f_Y(y) = \frac{\lambda ^y e^{-\lambda}}{y!}$ results in:
 
-
-
-
-
+$$1 - \frac{\lambda ^ 0 e^{- \lambda}}{0!} = 1 - e^{-\lambda} = 1 - e^{-4/3} = 0.7364$$
 
 
 
@@ -64,10 +99,79 @@ you notice about Y and W as n $\to \infty$
 
 ## Solution
 
+```{R}
+# set the largest y for which you want to plot P(Y = y)
+max_y <- 50
+y <- 0:max_y
+```
+
+1. Binomial distribution
+
+
+```{R binom}
+
+v1 <- 100
+v2 <- 50
+v3 <- 200
+
+plot(y , dbinom(y, v1, 0.1), type="h",
+     xlim=c(0, max_y), ylim=c(0,0.2),
+     xlab = "y", ylab = "p(Y = y)",
+     main = "Y ~ Binom(y, p)",
+     col = "darkgreen")
+# add points and lines for the distribution of Y if Y ~ Geom(p) for different p
+points(y, dbinom(y, v1, 0.1), pch = 20, col = "darkgreen")
+
+lines(y, dbinom(y, v2, 0.1), type = "h", col = "magenta")
+points(y, dbinom(y, v2, 0.1), pch = 20, col = "magenta")
+
+lines(y, dbinom(y, v3, 0.1), type = "h", col = "blue")
+points(y, dbinom(y, v3, 0.1), pch = 20, col = "blue")
+# add a legend
+legend("topright", legend = c(paste0("n= ", v1), paste0("n=", v2), paste0("n=", v3)),
+       col = c("darkgreen", "magenta", "blue"),
+       pch = c(20,20,20), bty = "n")
+
+```
 
 
 
 
+
+```{R}
+# set the largest y for which you want to plot P(Y = y)
+max_y <- 50
+y <- 0:max_y
+```
+
+2. Poisson distribution
+
+
+```{R poisson}
+
+v1 <- 100
+v2 <- 50
+v3 <- 200
+
+plot(y, dpois(y, v1 * 0.1), type="h",
+     xlim=c(0, max_y), ylim=c(0,0.2),
+     xlab = "y", ylab = "p(Y = y)",
+     main = "Y ~ Poisson(np)",
+     col = "darkgreen")
+# add points and lines for the distribution of Y if Y ~ Geom(p) for different p
+points(y, dpois(y, v1 * 0.1), pch = 20, col = "darkgreen")
+
+lines(y, dpois(y, v2 * 0.1), type = "h", col = "magenta")
+points(y, dpois(y, v2 * 0.1), pch = 20, col = "magenta")
+
+lines(y, dpois(y, v3 * 0.1), type = "h", col = "blue")
+points(y, dpois(y, v3 * 0.1), pch = 20, col = "blue")
+# add a legend
+legend("topright", legend = c(paste0("n= ", v1), paste0("n=", v2), paste0("n=", v3)),
+       col = c("darkgreen", "magenta", "blue"),
+       pch = c(20,20,20), bty = "n")
+
+```
 
 
 

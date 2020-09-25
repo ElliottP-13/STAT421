@@ -1,7 +1,7 @@
 ---
 title: "Homework # 5"
 author: "Elliott Pryor"
-date: "9/18/2020"
+date: "9/25/2020"
 output: pdf_document
 ---
 
@@ -174,7 +174,11 @@ legend("topright", legend = c(paste0("n= ", v1), paste0("n=", v2), paste0("n=", 
 ```
 
 
-
+As $n \to \infty$ we see that the distribution spreads out and shifts further to the right.
+This is easiest to analyze with the Poisson distribution. Since $\lambda = np$ then as 
+$n \to \infty$ $\lambda$ is increasing (hence the right shift as the mean moves to greater and greater values).
+Also since the variance $Var(Y) = \lambda = np$ as $n \to \infty$ the variance increases,
+hence why the distribution spreads out.
 
 
 
@@ -193,4 +197,39 @@ Find E(Y(Y-1)) for a geometric random variable Y by finding $\frac{d^2}{dq^2} (\
 \hrule
 
 ## Solution
+
+To start, we first give that $Var(Y) = E(Y(Y-1)) + E(Y) - E(Y)^2$. 
+
+We first need to find $E(Y(Y-1))$. We first start a couple math relations
+
+
+\begin{align}
+f(x) &= x^a\\
+\frac{d}{dx} f(x) &= a x^{a-1}\\
+\frac{d^2}{dx^2} f(x) &= a(a-1)x^{a-2}
+\end{align}
+
+
+\begin{align*}
+E(Y(Y-1)) &= \sum_{y=1}^\infty (y(y-1)) P(y)\\
+&= \sum_{y=1}^\infty (y(y-1)) q^{y-1}p\\
+&= p\sum_{y=1}^\infty (y(y-1)) q * q^{y-2}\\
+&= qp\sum_{y=1}^\infty (y(y-1)) q^{y-2} \quad\quad \text{By (3)}\\
+&= qp\sum_{y=1}^\infty \frac{d^2}{dq^2} q^y \quad\quad \text{can factor }\frac{d^2}{dq^2} \text{ because 'certain conditons' hold}\\
+&= qp \frac{d^2}{dq^2} (\sum_{y=1}^\infty q^y) \quad\quad \text{By geometric series} \\
+&= qp \frac{d^2}{dq^2} (\frac{q}{1-q}) \\
+&= qp (\frac{2q}{(1-q)^3} + \frac{2}{(1-q)^2})\\
+&= qp (\frac{2q + 2(1-q)}{(1-q)^3})\\
+&= qp (\frac{2q + 2(p)}{(p)^3})\\
+&= 2q \frac{q + p}{p^2}\\
+&= \frac{2q}{p^2}
+\end{align*}
+
+
+Now we can solve for $Var(Y) = E(Y(Y-1)) + E(Y) - E(Y)^2 = \frac{2q}{p^2} + \frac{1}{p} - \frac{1}{p^2} = \frac{2q + (p - 1)}{p^2} = \frac{2q + (-q)}{p^2} = \frac{q}{p^2}$
+
+
+
+
+
 

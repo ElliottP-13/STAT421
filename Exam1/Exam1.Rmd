@@ -33,10 +33,20 @@ c. Let $Y$ be the number of earthquakes in the next 12 hrs
 \hrule
 ## Solution
 
+a. This is a reasonable model. It does not severely break any of the three Poisson criteria. The independence of non-overlapping intervals is the most dubious. Since they are earthquakes, the likelihood of subsequent earthquakes would depend on previous ones. So independence may be questionable. However, the effect of this would be *very* difficult to measure so a reasonable start would be a Poisson distribution. There is no time correlation in earthquakes, so one is not more likely to occur at 6am than 6pm, so chopping up the day into $n$ intervals the probability of one occurrence would be constant $\lambda / n$. Then we physically can't have 2 earthquakes happen at the same time, so the third Poisson criteria is met. The Poisson distribution is a reasonable model for $X$ with the given information.
 
+b. For a Poisson distribution $E(X) = \lambda$, so in this case $E(X) = 20$. This means that we expect 20 earthquakes to occur on some day near Mount Saint Helen's. 
 
+c. 
 
-
+    i. Y is the number of earthquakes in 1/2 a day. So since Y = Number of successes in $k$ units of effort implies $Y \sim Poisson(k \lambda)$. From the previous problem (b) we have that $\lambda = 20$ so $Y \sim Poisson(1/2 * 2=) = Poisson(10)$
+    
+    ii. We know that $P(Y) \geq 2 = 1 - P(Y < 2) = 1 - (P(Y = 0) + P(Y = 1))$. We have the $P(Y = y) = \frac{\lambda ^ y e^{- \lambda}}{y!}$. So we have 
+    $$P(Y) \geq 2 = 1 - (P(Y = 0) + P(Y = 1)) = 1 - (e^{-10} + 10 e^{-10}) = 1 - 11 e^{-10} = 0.9995006$$
+    Where the final step using R as below
+    ```{R}
+    1 - 11 * exp(-10)
+    ```
 
 
 

@@ -1,0 +1,133 @@
+---
+title: "Homework # 5"
+author: "Elliott Pryor"
+date: "10/5/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
+```
+
+
+# Problem 1
+## Statement
+
+Let $X$ be a random variable representing the number of earthquakes in the
+Mount Saint Helen’s region per day.
+
+a. Researchers claim that $X$ can be modeled with a Poisson distribution.
+Explain why this is (or is not) a reasonable model for $X$.
+
+b. Let the average number of earthquakes in a given day be 20. Using
+the Poisson model in (a), what is $E(X)$? Include an interpretation of the
+expectation in the context of this problem
+
+c. Let $Y$ be the number of earthquakes in the next 12 hrs
+
+    i. What is the distribution of Y? *Be sure to specify parameters and their values*
+
+    ii. What is $P(Y \geq 2)$? Write a mathematical expression for this value and evaluate the expression. *You may use R for the calculation, but provide the code you used to find the desired probability.*
+    
+
+\hrule
+## Solution
+
+
+
+
+
+
+
+
+
+# Problem 2
+## Statement
+
+Suppose scientists expose 100 individual fish eggs from the same fish species 
+to the same amount of a potentially harmful substance and then record how many
+fish have defects at age 6 weeks. The researchers are interested in estimating the
+probability of this species of fish developing defects after 6 weeks if they are exposed
+to this chemical.
+
+
+a. Let Y be the number of fish at age 6 weeks that develop defects due to this experiment. Specify a reasonable distribution for the random variable Y.
+
+b. Give at least one reason why your choice of distribution in (a) might be inadequate
+
+c. Suppose the researchers inspect the 6-week-old fish one at a time until they observe the fourth fish with defects. Let Z be the number of fish inspected until the fourth fish with defects is identified. One of the researchers claims that it would be reasonable to model Z with a negative binomial distribution.
+
+    i. Specify the appropriate value of r for the proposed model (i.e., write $Z \sim NegativeBinomial(r =?, p)$ 
+    
+    ii. Explain to the researcher why this model is not appropriate for this situation.
+
+
+\hrule
+## Solution
+
+
+
+
+
+
+
+
+
+# Problem 3
+## Statement
+
+A hospital receives 15% of its flu vaccine shipments from Company A and
+the remainder of its shipments from Company B. Suppose each shipment contains
+exactly 20 vaccine vials.
+
+- For each of Company A’s shipments, suppose 20% of the vials are ineffective
+- For each of Company B’s shipments, 10% of the vials are ineffective.
+- The hospital plans to randomly select a shipment (of exactly 20 vaccine vials) and test 3 randomly selected vials from the shipment.
+
+a. Assuming the 20 vials in the shipment are independently made (i.e., they do not come from the same batch) what is the probability that a shipment from Company A would have exactly 2 ineffective vials out of the 3 vials that are randomly selected and tested? *Be sure to clearly define events and random variables*
+
+b. Suppose another shipment is randomly selected and it is missing its label. That is, you do not know which company the shipment came from.
+
+    i. What is the probability 2 of 3 randomly selected vials from a
+randomly selected shipment would be ineffective? That is, what is the
+overall probability that a random selection of 3 vials from a shipment will
+be ineffective. *Again, be sure to clearly define events and random variables.*
+
+    ii. If 2 of 3 randomly selected vials from a randomly selected shipment
+are found to be ineffective, what is the probability the shipment came from
+Company A? *Again, be sure to clearly define events and random variables.*
+
+\hrule
+## Solution
+
+
+
+
+
+
+
+
+
+
+# Problem 4
+## Statement
+
+ Consider the function: $p(y) = 1/5$ for $y \in \{3, 4, 5, 6, 7\}$
+ 
+a. What is missing from p(y) to make it a legitimate probability function?
+
+b. Create a clearly labeled plot for the pmf of Y
+
+c. Create a clearly labeled plot for the CDF of Y
+
+d. What is $Var(Y)$?
+
+e. **Extra Credit** Find $E(\frac{1}{Y^2})$
+
+\hrule
+## Solution
+
+
+
+
+

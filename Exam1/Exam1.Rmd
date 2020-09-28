@@ -75,7 +75,15 @@ c. Suppose the researchers inspect the 6-week-old fish one at a time until they 
 \hrule
 ## Solution
 
+a. I thing a Binomial distribution is reasonable in this case. Unlike Geometric or Negative Binomial it counts the total number of occurrences, which is what we are looking for: $Y$ is the total number of fish that are defective. Also, whether or not a fish has defects is independent of the other fish. So it fits the binomial distribution criteria. For completeness, A Hypergeometric distribution would not make sense in this case as there isn't a fixed number of fish with defects. This is not a capture-recapture senario so Hypergeometric does not make sense. And Poisson also does not make sense as we don't know the mean number of occurrences. 
 
+b. It could be inadequate if the independence assumption is removed. Say depending on the genetic history of the fish some are more susceptible. Also if there is a finite amount of the hazardous substance, so ones exposed near the end of the trial are safer since most of the substance is gone. 
+
+c. 
+
+    i. We are looking for the fourth occurence, so $r = 4$. $Z \sim NegativeBinomial(r = 4, p)$
+    
+    ii. In this senario, the trials are not independent since the sample size would be large relative to the total population. Since there are a small number of total fish, drawing a fish out would significantly change the probability of selecting a defective fish next time. So the independence assumption is broken, and another distribution would have to be used to account for the finite population. 
 
 
 

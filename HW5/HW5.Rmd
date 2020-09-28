@@ -57,11 +57,12 @@ poisson_pmf <-function(y) {# generate a sequence of 100 independent Bernoulli tr
 (poisson_pmf(0)  + poisson_pmf(1) + poisson_pmf(2) + poisson_pmf(3))
 ```
 
-4. This is very similar to problem 2, but since we know that $Y \geq 2$ we can ignore the $P(Y = 0)$ and $P(Y = 1)$ terms.
-So we get $P(Y \geq 4 | Y \geq 2) = 1 - (P(Y = 2) + P(Y = 3))$
+4. This is very similar to problem 2, but since $P(A | B) = \frac{P(A \cap B)}{P(B)} = \frac{P(Y = 4 \cap Y \geq 2)}{P(Y \geq 2)} = \frac{P(Y = 4)}{1 - (P(Y = 0) + P(Y = 1))}$.
 
 ```{R}
-1 - (poisson_pmf(2) + poisson_pmf(3))
+numerator <- 1 - (poisson_pmf(0)  + poisson_pmf(1) + poisson_pmf(2) + poisson_pmf(3))  # From (2)
+denominator <- 1 - (poisson_pmf(0) + poisson_pmf(1))
+numerator/denominator
 ```
 
 

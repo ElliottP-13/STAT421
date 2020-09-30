@@ -172,17 +172,17 @@ pmf <-function(y) {
   return(p)}
 
 vals <- 0:10
-p <- lapply(vals, pmf)
+p_vals <- lapply(vals, pmf)
 
 # plot the pmfs (Copied from pmf-plotting-code.R)
-plot(vals, t, type = "h", xlab = "y", 
+plot(vals, p_vals, type = "h", xlab = "y", 
      ylab = "p(y)", lwd = 2, main = "PMF of Y")
-points(x = vals, y = p, pch = 20)
+points(x = vals, y = p_vals, pch = 20)
 
 ```
 c. We compute the CDF. 
 
-```{R pmf}
+```{R cdf}
 cdf <-function(y) {
   if(y < 3){
     p <- 0
@@ -208,6 +208,7 @@ plot(x = vals, y = p, type = "n", xlab = "y",
      ylab = "P(Y <= y)", lwd = 2, main = "CDF of Y", ylim = c(0,1))
 segments(-5, 0, x1 = 3, y1 = 0)
 points(3,0)
+arrows(1, 0, x1 = 0, y1 = 0, length = 0.1)
 
 for (i in 4:7){
   segments(i-1, cdf(i-1), x1 = i, y1 = cdf(i-1))
@@ -218,4 +219,17 @@ points(7, 1, pch = 20)
 arrows(7, 1, x1 = 8, y1 = 1, length = 0.1)
 
 ```
+
+d. We can then compute the variance of $Y$. We know that $Var(Y) = E(Y^2) - E(Y)^2$
+
+First we compute $E(Y) = \sum_{y \in S_Y} y * P(Y = y) = 3 * 0.2 + 4 * 0.2 + 5 *0.2 + 6 *0.2 +7 *0.2 = 5$ This makes sense since every option is equally weighted so the expected value would be the simple average of $(3,4,5,6,7) = 5$.
+
+Next we compute $E(Y^2) = \sum_{y \in S_Y} y^2 * P(Y = y) = 9 * 0.2 + 16 * 0.2 + 25 *0.2 + 36 *0.2 +49 *0.2 = 27$. This makes sense that the average is slightly over $5^2$ since the later terms grow faster and have a higher contribution, so the avereage would shift slightly greater. 
+
+Now the variance is $Var(Y) = 27 - 25 = 2$ 
+
+e. **Extra Credit** We compute $E(1/(Y^2))$. We do this the same way that we do it in part d. We also note that $1/y^2$ is defined for all $y \in S_Y$
+
+$E(1/Y^2) = \sum_{y \in S_Y} 1/y^2 * P(Y = y) = 1/9 * 0.2 + 1/16 * 0.2 + 1/25 *0.2 + 1/36 *0.2 + 1/49 *0.2 = 0.05235941$. I attempted to convert this into a fraction, but my calculator cannot and the common denominator is too big for me to reasonably work with. But the expected value is slightly greater than 1/20. This makes sense for the same reasons in (b) but with the shift to move the average the other direction since we have an inverse quadratic. 
+
 

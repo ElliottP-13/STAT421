@@ -1,0 +1,147 @@
+---
+title: "Homework # 7"
+author: "Elliott Pryor"
+date: "10/9/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
+```
+
+
+
+
+# Problem 1
+## Statement
+Pg 167-168 4.12
+
+The length of time to failure (in hundreds of hours) for a transistor is a random variable Y with
+distribution function given by
+
+$$F(y) = \begin{cases}
+0, & y < 0\\
+1 - e^{-y^2}, & y \geq 0
+\end{cases}
+$$
+
+a. Show that F(y) has the properties of a distribution function
+
+b. Find the 0.30 -quartile $\phi_{0.30}$ of Y
+
+c. Find $f(y)$
+
+d. Find the probability that the transistor operates for at least 200 hours.
+
+e. Find $P(Y > 100 | Y \leq 200)$
+
+\hrule
+## Solution
+
+a. In order to show that $F(y)$ has the properties of a distribution function it must have the following properties
+
+\begin{align}
+\lim_{y \to -\infty} F_Y (y) &= 0\\
+\lim_{y \to \infty} F_Y (y) &= 1\\
+\text{if } y_1 \leq y_2 \quad & \quad F(y_1) \leq F(y_2)\\
+\lim_{y \to y_0 ^+} F_Y(y) &= F_Y(y)
+\end{align}
+
+The first property is clearly true since $F(y) = 0 \quad \forall y < 0$. 
+The second property we can see by taking the limit $\lim_{y \to \infty} 1 - e^{-y^2} = 1$ since $e^{-y^2} \to 0$.
+The third property is also true. This is clearly true for all $y < 0$ as it is constant. So we consider $y\geq 0$.
+If $y_1 \leq y_2$ then $y_1 ^ 2 \leq y_2 ^2$ for any $y \geq 0$. So $\frac{1}{e^{y_1^2}} \geq \frac{1}{e^{y_2^2}}$, 
+and since we are subtracting a larger value in the $y_1$ case $1 - e^{-y_1^2} \leq 1 - e^{-y_2^2} \quad \forall y \geq 0$.
+The last property is also true. $1 - e^{-y^2}$ is continuous so this property holds for $y > 0$, so we just have to show that
+there is no jump discontinuity at $y = 0$. $1 - e^{-0^2} = 1-1 = 0$, so there is no discontinuity and the property holds.
+
+Thus it is a distribution function.
+
+b. The $\phi _{0.30}$ quartile occurs when $F(y) = 0.30$. So solving we get 
+
+\begin{align*}
+1-e^{-y^2} &= 0.30\\
+0.70 &= e^{-y^2}\\
+\ln(0.70) &= -y^2\\
+-\ln(0.70) &= y^2\\
+\sqrt{-\ln(0.70)} &= y\\
+0.597 &= y\\
+\end{align*}
+
+So the 0.30 quartile occurs at $y = 0.597$, so the likelihood of a value occurring between $0$ and $0.597$ is $0.30$
+
+c. We can find $f(y)$ which is the probability density function by differentiation.
+
+$$
+f(y) = \begin{cases}
+0, & y < 0\\
+2y e^{-y^2}, & y \geq 0
+\end{cases}
+$$
+
+d. The probability that it works for at least 200 hours is the area under the curve of $f(y)$ from $2$ to $\infty$ since the units of $y$ are in hundreds of hours. 
+
+$$\int_2^\infty 2y e^{-2y^2} = F(\infty) - F(2) = 1 - 4 e^{-8} = 0.9987$$
+So it is very likely that the transistor will operate for over 200 hours.
+
+
+e. Since the value $P(Y=y_0) = 0 ;\; \forall y_0$ we can exchange the strict inequality for the non-strict inequality.
+So, find $P(Y \geq 100 | Y \leq 200)$, so by the definition of conditional probability: 
+$$P(Y \geq 100 | Y \leq 200) = \frac{P(100\leq Y \leq 200)}{P(Y \leq 200)} = \frac{\int_1^2 2y e^{-2y^2}}{\int_0^2 2y e^{-2y^2}} = \frac{F(2) - F(1)}{F(2) - F(0)} = \frac{0.981 - 0.632}{0.981 - 0} = 0.356 $$
+
+
+
+
+# Problem 2
+## Statement
+pg 177-178 4.54
+
+In using the triangulation method to determine the range of an acoustic source, the test equipment must accurately measure
+the time at which the spherical wave front arrives at a recieving sensor.
+According to Perruzzi and Hilliard (1984), measurement errors in these times can be modeled as possesing a uniform distribuion
+from $-0.05$ to $0.05 \; \mu s$ (microseconds)
+
+a. What is the probability that a particular arrival-time measurement will be accurate to within $0.01 \; \mu s$?
+
+b. Find the mean and variance of the measurement errors.
+
+\hrule
+## Solution
+
+
+# Problem 3
+## Statement
+pg 182 4.40
+
+A normally distributed random variable has density function
+
+$$\frac{1}{\sigma \sqrt{2 \pi}} \exp(-(y - \mu)^2/(2\sigma ^ 2), \quad\quad -\infty < y < \infty$$
+
+Using the fundamental properties assosicated with any density function, 
+argue that the parameter $\sigma$ must be such that $\sigma > 0$
+\hrule
+
+## Solution
+
+
+# Problem 4
+## Statement
+pg 183 4.71
+
+Wires manufactured for use in a computer system are specified to have resistances between $0.12$ and $0.14$ ohms.
+The actual measured resistances of the wires produced by company A have a 
+normal probability distribution with mean $0.13$ ohms and standard deviation $0.005$ ohm.
+
+a. What is the probability that a randomly selected wire from company A's production will meet the specifications?
+
+b. If four of these wires are used in each computer system and all are selected from company A,
+what is the probability that all four in a randomly selected system will meet the specifications?
+\hrule
+
+## Solution
+
+
+
+
+
+

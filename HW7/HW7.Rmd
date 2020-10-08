@@ -155,7 +155,14 @@ what is the probability that all four in a randomly selected system will meet th
 
 ## Solution
 
+a. So we are seeing if the probability that the actual resistance falls within $\pm 0.01$ of the mean. This is two standard deviations. 
+So by the empiricle rule, the probability that a wire is within 2 standard deviations is 95\%. 
+So there is a 95% probability the wire will meet the required specifications.
 
+b. The probability that all four meet the specifications can be written as the probability that the first one meets specifications **and** the second one meets specifications **and** the third one meets specifications **and** the fourth one meets specifications. 
+This logical and is multiplication. The probability that a single one meets specifications is $95\% = 0.95$. 
+So the probability that all meet specifications $= 0.95 * 0.95 * 0.95 *0.95 = 0.8145 = 81.45\%$. 
+So there is a 91.45% probability that all meet the required specifications.
 
 
 

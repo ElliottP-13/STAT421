@@ -39,14 +39,12 @@ e. Find $P(Y > 100 | Y \leq 200)$
 ## Solution
 
 a. In order to show that $F(y)$ has the properties of a distribution function it must have the following properties
-
 \begin{align}
 \lim_{y \to -\infty} F_Y (y) &= 0\\
 \lim_{y \to \infty} F_Y (y) &= 1\\
 \text{if } y_1 \leq y_2 \quad & \quad F(y_1) \leq F(y_2)\\
 \lim_{y \to y_0 ^+} F_Y(y) &= F_Y(y)
 \end{align}
-
 The first property is clearly true since $F(y) = 0 \quad \forall y < 0$. 
 The second property we can see by taking the limit $\lim_{y \to \infty} 1 - e^{-y^2} = 1$ since $e^{-y^2} \to 0$.
 The third property is also true. This is clearly true for all $y < 0$ as it is constant. So we consider $y\geq 0$.
@@ -54,11 +52,9 @@ If $y_1 \leq y_2$ then $y_1 ^ 2 \leq y_2 ^2$ for any $y \geq 0$. So $\frac{1}{e^
 and since we are subtracting a larger value in the $y_1$ case $1 - e^{-y_1^2} \leq 1 - e^{-y_2^2} \quad \forall y \geq 0$.
 The last property is also true. $1 - e^{-y^2}$ is continuous so this property holds for $y > 0$, so we just have to show that
 there is no jump discontinuity at $y = 0$. $1 - e^{-0^2} = 1-1 = 0$, so there is no discontinuity and the property holds.
-
 Thus it is a distribution function.
 
 b. The $\phi _{0.30}$ quartile occurs when $F(y) = 0.30$. So solving we get 
-
 \begin{align*}
 1-e^{-y^2} &= 0.30\\
 0.70 &= e^{-y^2}\\
@@ -67,7 +63,6 @@ b. The $\phi _{0.30}$ quartile occurs when $F(y) = 0.30$. So solving we get
 \sqrt{-\ln(0.70)} &= y\\
 0.597 &= y\\
 \end{align*}
-
 So the 0.30 quartile occurs at $y = 0.597$, so the likelihood of a value occurring between $0$ and $0.597$ is $0.30$
 
 c. We can find $f(y)$ which is the probability density function by differentiation.
@@ -109,19 +104,39 @@ b. Find the mean and variance of the measurement errors.
 ## Solution
 
 
+a. Since it is a uniform distribution, we know that the probability density in $[-0.05, 0.05]$ is 10. We are looking for the probability that the error is $|e| \leq 0.01$ which means $-0.01 \leq e \leq 0.01$. So if $Y \sim Unif(-0.05, 0.05)$ we are looking for $P(-0.01 \leq Y \leq 0.01) = \int_{-0.01}^{0.01} 10 dy = 0.2$. So the probability that a particular arrival time is accurate to within $0.01 \; \mu s$ is 0.2.
+
+b. The mean is the midpoint of the uniform distribution so $\frac{-0.05 + 0.05}{2} = 0 \; \mu s$. We need to calculate a formula for $Var (Y)$. 
+We start with $Var(Y) = E(Y^2) - E(Y)$. We then compute $E(Y^2)$
+$$E(Y^2) = \int_{-\infty}^{\infty} y^2 f_Y(y)dy = \int_{\theta_1}^{\theta_2} y^2 \frac{1}{\theta_2 - \theta_1}dy = \frac{1}{\theta_2 - \theta_1} \left( 1/3y^3 \Big|_{\theta_1}^{\theta_2} \right) = \frac{1}{3(\theta_2 - \theta_1)} \left(\theta_2^3 - \theta_1^3 \right)$$
+Then $Var(Y) = \frac{1}{3(\theta_2 - \theta_1)} \left(\theta_2^3 - \theta_1^3 \right) - \left(\frac{\theta_2 + \theta_1}{2} \right)^2 = \frac{(\theta_2 - \theta_1)^2}{12}$. The last step in the simplification was given in class.
+So $Var(Y) = \frac{(\theta_2 - \theta_1)^2}{12} = \frac{(0.05 + 0.05)^2}{12} = 0.0008333$
+
+
+
+
 # Problem 3
 ## Statement
 pg 182 4.40
 
 A normally distributed random variable has density function
 
-$$\frac{1}{\sigma \sqrt{2 \pi}} \exp(-(y - \mu)^2/(2\sigma ^ 2), \quad\quad -\infty < y < \infty$$
+$$f_Y(y) = \frac{1}{\sigma \sqrt{2 \pi}} \exp(-(y - \mu)^2/(2\sigma ^ 2), \quad\quad -\infty < y < \infty$$
 
 Using the fundamental properties assosicated with any density function, 
 argue that the parameter $\sigma$ must be such that $\sigma > 0$
 \hrule
 
 ## Solution
+So any density function must (1) integrate to 1 over the reals. (2) $f_Y(y) \geq 0 \quad \forall y \in \mathbb{R}$.
+
+If $\sigma = 0$ then $\frac{1}{\sigma \sqrt{2\pi}}$ is undefined, so $\sigma \neq 0$.
+
+If $\sigma < 0$ then $\frac{1}{\sigma \sqrt{2\pi}} < 0$, and $e^a > 0 \quad \forall a \in \mathbb{R}$ $\implies \frac{1}{\sigma \sqrt{2 \pi}} \exp(-(y - \mu)^2/(2\sigma ^ 2) < 0 \quad \forall y$, which violates (2). 
+
+So $\sigma > 0$
+
+
 
 
 # Problem 4

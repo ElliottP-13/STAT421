@@ -1,0 +1,108 @@
+---
+title: "Homework # 8"
+author: "Elliott Pryor"
+date: "10/19/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
+```
+
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+
+# Problem 1
+## Statement
+
+The length of time until the breakdown of an essential piece of equipment is important
+in the decision of the use of auxiliary equipment. Assume you are interested in the time
+to breakdown (in days) of a randomly chosen generator.
+
+a. Define a random variable, Y that represents the quantity of interest.
+
+b. What probability distribution(s) of those we have discussed, could you use to
+model the random variable of interest. Explain
+
+c. Suppose that, historically the average time to breakdown of a randomly chosen
+generator is 10 days with a variance of 100 days. Specify a probability model for
+Y.
+
+d. Using your model in (c), what is the probability a generator will break down in
+the next 21 days?
+
+e. A company owns 7 such generators. Assuming the breakdown of any one generator
+is independent of breakdowns of the other generators, what is the probability that at
+least 6 of the 7 generators will operate for the next 21 days without a breakdown?
+Be sure to first define a RV, X for the quantity of interest, describe what X is in
+words, provide notation to communicate the assumed distribution of X, and write
+a probability statement using proper notation. Compute the probability by hand
+or using software. If you use software provide the code you used
+
+\hrule
+## Solution
+
+
+
+
+
+# Problem 2
+## Statement
+
+4.130
+
+Prove that the variance of a beta distributed random variable with parameters $\alpha$, $\beta$ is:
+
+$$
+\sigma^2 = \frac{\a \b}{(\a + \b)^2(\a + \b + 1)}
+$$
+
+## Solution
+
+
+
+
+
+# Problem 3
+## Statement
+
+4.140
+
+Identify the distributions of the random variables with the following moment generating functions:
+
+a. $m(t) = (1-4t)^{-2}$
+
+b. $m(t) = 1/(1- 3.2t)$
+
+c. $m(t) = e^{-5t + 6t^2}$
+
+
+\hrule
+
+## Solution
+
+
+
+
+
+
+
+
+# Problem 4
+## Statement
+
+
+Use the example code for plotting the Gamma pdf (posted on Brightspace) and do
+something similar for the Beta distribution. Make note of the parameterization R uses
+and describe how changing the values of $\a$ and $\b$ change the resulting Beta distributions
+
+\hrule
+
+## Solution
+
+
+
+
+
+
+

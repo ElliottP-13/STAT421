@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
 
 \renewcommand{\a}{\alpha}
 \renewcommand{\b}{\beta}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
 
 # Problem 1
 ## Statement
@@ -25,8 +26,7 @@ b. What probability distribution(s) of those we have discussed, could you use to
 model the random variable of interest. Explain
 
 c. Suppose that, historically the average time to breakdown of a randomly chosen
-generator is 10 days with a variance of 100 days. Specify a probability model for
-Y.
+generator is 10 days with a variance of 100 days. Specify a probability model for Y.
 
 d. Using your model in (c), what is the probability a generator will break down in
 the next 21 days?
@@ -42,8 +42,46 @@ or using software. If you use software provide the code you used
 \hrule
 ## Solution
 
+a. Let $Y$ be the random variable representing the number of days a single generator will last without breaking down.
+
+b. Of the probability distributions that we have discussed, the gamma distribution
+makes the most sense. This mostly depends on how we want to model the timeframe.
+If we consider continuous time, ie we are conserned with exactly when a generator
+will fail (say 1:30pm on the 3rd day) then we would use gamma. If we only care if a generator fails on a specific
+day (say on the 3rd day) we would use the discrete analog which is the geometric distribution. 
+In all honesty, the phrasing of the question would imply that we are interested in the geometric distribution.
+It asks only about specific days. However, it is not possible to generate a geometric
+distribution with the parameters given in part (c). For a geometric distribution:
+$E(Y) = 10 = 1/p \implies p = 0.1$, but $Var(Y) = (1-p)/p^2 = 90$ so both can't be satisfied. 
+
+c. We know that the mean (expected value) of a geometric distribution is 
+$E(Y) = 10 = \a \b \implies \a = 10/ \b$. Then we can use this to solve for the variance
+which we know is $Var(Y) = 100 = \a \b^2 = 10/ \b * \b^2 = 10 b \implies b = 10 \implies a = 1$.
+This is the special case of the gamma distribution called the exponential distribution.
+So $Y \sim Exp(10)$
 
 
+
+d. We are asked to find the probability that it breaks down in the next 21 days, so within 21 days. 
+We can use the cdf since we would still want to know the entire probability it fails before 21 days, so we solve
+$$\int_0 ^{21} 1/\b e^{-x/ \b} = \int_0 ^{21} 1/10 e^{-x/10} = \Eval{-e^{-x/10}}{0}{21} = 1 - exp(-2.1) = 0.877$$
+So the probability that it fails within 21 days is 0.877.
+We solved the last expression using R
+```{R}
+1- exp(-2.1)
+```
+
+e. We let $X$ be the number of generators that failed. We say $X \sim Binom(7, p)$ where $p$ is the probability
+that a single generator fails. This was calculated in part (d) so $X \sim Binom(7, 0.877)$.
+We are looking at the probability that exactly one fails, so $P(X \leq 1) = F_Y(1)$.
+We solve it with the following R command
+```{R}
+pbinom(q = 1, size = 7, prob = 1- exp(-2.1))
+
+```
+So We have that the probability that 6 remain functional after 21 days is very small.
+This makes sense since there is a high probability of a single generator failing within 21 days,
+so it is extremely likely that more than one would fail. 
 
 
 # Problem 2
@@ -59,7 +97,22 @@ $$
 
 ## Solution
 
+We know that the variance is $Var(Y) = E(Y^2) - E(Y)^2$. We know that $E(Y) = \frac{\a}{\a + \b}$. We solve for $E(Y^2)$
 
+\begin{align*}
+E(Y^2) &= \int_0^1 y^2 \frac{1}{\beta(\a, \b)} y^{\a -1} (1-y)^{\b - 1} dy\\
+&= \frac{1}{\beta(\a, \b)} \int_0^1 y^{(\a + 2) -1} (1-y)^{\b - 1} dy\\
+&= \frac{1}{\beta(\a, \b)} \int_0^1 \frac{\beta(\a + 2, \b)}{\beta(\a + 2, \b)}
+y^{(\a + 2) -1} (1-y)^{\b - 1} dy\\
+&= \frac{\beta(\a + 2, \b)}{\beta(\a, \b)} \int_0^1 f_Z(z) dz \quad \quad Z \sim Beta(\a + 1, \b)\\
+&= \frac{\Gamma(\a + 2)\Gamma(\b)}{\Gamma(\a + 2 + \b)} \frac{\Gamma(\a + \b)}{\Gamma(\a) \Gamma(\b)}\\
+&= \frac{\a(\a + 1) \Gamma(\a)\Gamma(\b)}{(\a + \b)(\a + \b + 1) \Gamma(\a + \b)} \frac{\Gamma(\a + \b)}{\Gamma(\a) \Gamma(\b)}\\
+&= \frac{\a^2 + \a}{(\a + \b)(\a + \b + 1)}\\
+\end{align*}
+
+Then we can plug this in. We get:
+
+$$Var(Y) = \frac{\a^2 + \a}{(\a + \b)(\a + \b + 1)} - \left( \frac{\a}{\a + \b} \right)^2 =\frac{(\a + \b)(\a^2 + \a) - \a^2 (\a + \b + 1)}{(\a + \b)^2 (\a + \b + 1)} = \frac{\a \b}{(\a + \b)^2 (\a + \b + 1)} $$
 
 
 

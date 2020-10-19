@@ -168,7 +168,7 @@ and describe how changing the values of $\a$ and $\b$ change the resulting Beta 
 
 
 
-
+$$P(Y\ =\ s)\ =\ \frac{{r \choose\ s}\ {\ {N' \ -\ r}\ \choose\ {n\ -\ s}\ }}{N'\ \choose n}$$
 
 
 

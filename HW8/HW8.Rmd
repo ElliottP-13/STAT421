@@ -134,6 +134,19 @@ c. $m(t) = e^{-5t + 6t^2}$
 
 ## Solution
 
+Using the table in appendix 2 of moment generating functions to identify kernals. (pg 838)
+
+a. This fits the form of $(1- \b t)^{-\a}$ which belongs to the Gamma. So $Y \sim Gamma(2, 4)$
+
+b. This also fits the form of $(1- \b t)^{-\a}$. But this has the special case of $\a = 1$. So this is exponential
+distribution. $Y \sim Exp(3.2)$
+
+c. This fits the form of $\exp \left(\mu t + \frac{t^2 \sigma^2}{2}\right)$. 
+Which is the normal distribution with mean $\mu = 5$ and variance $\sigma^2 = 6$: $Y \sim Normal(-5, 6)$
+
+It feels like cheating to use the back of the book for the functions. But we could also easily infer that by
+the parameters given. We are given the exponential distribution in our notes. Also from its similarity to gamma, we could also infer a.
+Then for part c the exponential is tricky. But Normal is the only one with an exponential in its pdf. 
 
 
 

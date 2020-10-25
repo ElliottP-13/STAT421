@@ -31,19 +31,50 @@ b. Calculate the marginal pmf $f_Y(y)$
 \hrule
 ## Solution
 
+a. We have to sum over the support of $Y$ so 
+\begin{align*}
+f_X(x) &= \sum_{y = 0}^\infty \frac{1}{y! \, \Gamma(\theta) \delta^\theta} x^{y + \theta - 1} e^{-x \left(\frac{1}{\delta} + 1 \right)}\\
+&= f_X(x) = \frac{e^{-x \left( \frac{1}{\delta}\right) }  x^{\theta - 1}}{\Gamma(\theta) \delta^\theta} \sum_{y = 0}^\infty \frac{1}{y!} e^{-x} x^{y} \quad \implies Y \sim Poisson(\lambda = x)\\
+&= = f_X(x) = \frac{e^{-x \left( \frac{1}{\delta} \right) }  x^{\theta - 1}}{\Gamma(\theta) \delta^\theta}
+\end{align*}
+$f_X(x)$ follows a gamma distribution with $\alpha = \theta$ and $\beta = \delta$
 
 
-
-
+b. We integrate out the support of $X$ so:
+ We have to sum over the support of $Y$ so 
+\begin{align*}
+f_Y(y) &= \int_0^\infty \frac{1}{y! \, \Gamma(\theta) \delta^\theta} x^{y + \theta - 1} e^{-x \left(\frac{1}{\delta} + 1 \right)} dx \\
+&=  \frac{1}{y!} \int_0^\infty \frac{1}{\Gamma(\theta) \delta^\theta} x^{y} x^{\theta - 1} e^{-x/ \delta} e^{-x} dx\\
+&= \frac{1}{y!} \left( \int_0^\infty x^{y} e^{-x} dx\right) \left( \int_0^\infty \frac{1}{\Gamma(\theta) \delta^\theta}  x^{\theta - 1} e^{-x/ \delta} dx \right) \quad \implies X \sim Gamma(\alpha = \theta, \beta = \delta)\\
+&= \frac{1}{y!} \left(\int_0^\infty x^{y} e^{-x} dx\right) \\
+&= \frac{1}{y!} \Gamma(y +1)
+\end{align*}
+*I feel like this should simplify more, using the *
+$\Gamma(y + 1)$
+*and somehow using the beta distribution. But I can't figure out how *
 
 # Problem 2
 ## Statement
 
-Find $P(X > \sqrt(Y)$ if $X$, $Y$ are jointly distributed with pdf:
+Find $P(X > \sqrt{Y}$ if $X$, $Y$ are jointly distributed with pdf:
 $$f_{X,Y}(x,y) = x+y \quad 0\leq x \leq 1 , \sp 0 \leq y \leq 1$$
 
 \hrule
 ## Solution
+
+
+We need a 2D integral. We also know that $X, Y$ are continuous so we can substitute $P(X \geq \sqrt{Y})$
+
+$$\int_0^1 \int_{\sqrt{y}}^1 (x + y) dx dy$$
+\begin{align*}
+P(X \geq \sqrt{Y}) &= \int_0^1 \int_{\sqrt{y}}^1 (x + y) dx dy \\
+&= \int_0^1 \Eval{1/2 x^2 + xy}{\sqrt{y}}{1} dy\\
+&= \int_0^1 (1/2 y + y^{3/2}) dy\\
+&= \Eval{1/4 y^4 + 2/5 y^{5/2}}{0}{1}\\
+&= 1/4 + 2/5 - 0 - 0\\
+&= 13/20
+\end{align*}
+
 
 
 

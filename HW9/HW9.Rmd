@@ -1,0 +1,86 @@
+---
+title: "Homework # 9"
+author: "Elliott Pryor"
+date: "10/28/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
+```
+
+\renewcommand{\sp}{\; \;}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+# Problem 1
+## Statement
+
+The random variables $X$ and $Y$ have the joint distribution $f_{X, Y}$ given by:
+
+$$f_{X,Y} (x,y) = \begin{cases}
+\frac{1}{y! \, \Gamma(\theta) \delta^\theta} x^{y + \theta - 1} e^{-x \left(\frac{1}{\delta} + 1 \right)} & \text{if } y = 0,1,2,... \sp 0 < x < \infty\\
+0 & \text{otherwise}
+\end{cases}$$
+
+Where: $\delta, \theta > 0$
+
+a. Calculate the marginal pdf $f_X(x)$. Identify this distribution and its parameter(s).
+
+b. Calculate the marginal pmf $f_Y(y)$
+
+\hrule
+## Solution
+
+
+
+
+
+
+# Problem 2
+## Statement
+
+Find $P(X > \sqrt(Y)$ if $X$, $Y$ are jointly distributed with pdf:
+$$f_{X,Y}(x,y) = x+y \quad 0\leq x \leq 1 , \sp 0 \leq y \leq 1$$
+
+\hrule
+## Solution
+
+
+
+
+# Problem 3
+## Statement
+
+Find $P(X^2 < Y < X)$ if $X$, $Y$, are jointly distributed with pdf 
+$$f_{X,Y}(x,y) = 2x \quad 0\leq x \leq 1 , \sp 0 \leq y \leq 1$$
+
+\hrule
+## Solution
+
+
+
+
+
+
+
+
+# Problem 4
+## Statement
+
+A pdf is defined by
+
+$$f_{X,Y} (x,y) = \begin{cases}
+C(x + 2y) & \text{if } 0 < y < 1 \sp 0 < x < 2\\
+0 & \text{otherwise}
+\end{cases}$$
+
+a. Find the value of C
+
+b. Find the marginal pdf of X
+
+c. Find the joint cdf of X and Y
+
+\hrule
+## Solution
+
+

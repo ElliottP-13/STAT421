@@ -35,7 +35,7 @@ a. We have to sum over the support of $Y$ so
 \begin{align*}
 f_X(x) &= \sum_{y = 0}^\infty \frac{1}{y! \, \Gamma(\theta) \delta^\theta} x^{y + \theta - 1} e^{-x \left(\frac{1}{\delta} + 1 \right)}\\
 &= f_X(x) = \frac{e^{-x \left( \frac{1}{\delta}\right) }  x^{\theta - 1}}{\Gamma(\theta) \delta^\theta} \sum_{y = 0}^\infty \frac{1}{y!} e^{-x} x^{y} \quad \implies Y \sim Poisson(\lambda = x)\\
-&= = f_X(x) = \frac{e^{-x \left( \frac{1}{\delta} \right) }  x^{\theta - 1}}{\Gamma(\theta) \delta^\theta}
+&= = f_X(x) = \frac{e^{-x \left( \frac{1}{\delta} \right) }  x^{\theta - 1}}{\Gamma(\theta) \delta^\theta} I_{(0, \infty)(x)}
 \end{align*}
 $f_X(x)$ follows a gamma distribution with $\alpha = \theta$ and $\beta = \delta$
 
@@ -47,11 +47,11 @@ f_Y(y) &= \int_0^\infty \frac{1}{y! \, \Gamma(\theta) \delta^\theta} x^{y + \the
 &=  \frac{1}{y!} \int_0^\infty \frac{1}{\Gamma(\theta) \delta^\theta} x^{y} x^{\theta - 1} e^{-x/ \delta} e^{-x} dx\\
 &= \frac{1}{y!} \left( \int_0^\infty x^{y} e^{-x} dx\right) \left( \int_0^\infty \frac{1}{\Gamma(\theta) \delta^\theta}  x^{\theta - 1} e^{-x/ \delta} dx \right) \quad \implies X \sim Gamma(\alpha = \theta, \beta = \delta)\\
 &= \frac{1}{y!} \left(\int_0^\infty x^{y} e^{-x} dx\right) \\
-&= \frac{1}{y!} \Gamma(y +1)
+&= \frac{1}{y!} \Gamma(y +1) \quad y \in \mathbb{N} \cup \{0\}
 \end{align*}
 *I feel like this should simplify more, using the *
 $\Gamma(y + 1)$
-*and somehow using the beta distribution. But I can't figure out how *
+*and somehow using the beta distribution. But I can't figure out how since* $\alpha = y$ $\beta = 1$ *doesn't work*
 
 # Problem 2
 ## Statement
@@ -136,8 +136,8 @@ b. This was poor planning. I found marginal pdf of Y in part A.
 
 \begin{align*}
 f_X(x) &= C \int_0^1 C (x + 2y) dy\\
-f_X(x) &= C \\Eval{xy + y^2}{0}{1}\\
-f_X(x) &= 1/4  (x+1)\\
+f_X(x) &= C \Eval{xy + y^2}{0}{1}\\
+f_X(x) &= 1/4  (x+1) I_{(0,2)}(x)\\
 \end{align*}
 
 
@@ -149,4 +149,20 @@ F_{X,Y}(x,y) &= 1/4 \int \int  (x + 2y) dx dy\\
 F_{X,Y}(x,y) &=  1/4 \int 1/2x^2 + 2xy dy\\
 F_{X,Y}(x,y) &=  1/4 (1/2 x^2 y + y^2 x)\\
 \end{align*}
+
+We also need the marginal for Y:
+
+\begin{align*}
+f_Y(y) &= C \int_0^2 C (x + 2y) dx\\
+f_Y(y) &= C \Eval{1/2 x^2 + 2xy}{0}{2}\\
+f_Y(y) &= 1/4  (2+4y) I_{(0,1)}(y)\\
+\end{align*}
+
+$$F_{X,Y}(x,y) = \begin{cases}
+1/4 (1/2 x^2 y + y^2 x) & 0 < y < 1, \sp 0 < x < 2\\
+0 & y \leq 0, \sp x \leq 0\\
+1 & y \geq 1, \sp x \geq 2\\
+1/4(x + 1) & y \geq 1, \sp 0 < x < 2\\
+1/4  (2+4y) & x \geq 2, \sp 0 < y < 1\\
+\end{cases}$$
 

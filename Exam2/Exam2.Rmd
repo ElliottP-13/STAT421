@@ -1,0 +1,147 @@
+---
+title: "Exam 2"
+author: "Elliott Pryor"
+date: "11/04/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
+```
+
+\renewcommand{\sp}{\; \;}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+# Problem 1
+## Statement
+
+Let the random variable X be the time in minutes a hungry customer waits to recieve
+their tacos at Taco Montes. Suppose X follows an exponential distribution.
+
+a. The *median* time a hungry patron waits to receive their tacos is claimed
+to be 12 minutes (i.e., the probability that a patron waits 12 minutes or less
+is 0.5, or $\phi_{0.5} = 12$ mins). What is the mean amount of time a hungry patron
+waits for their tacos at Taco Montes?
+
+b. Use the MGF ($m_X(t)$), to find the mean wait time a customer waits
+to receive a taco — verify that this is the same mean you found in part (a).
+*Note: You do not need to derive the MGF of X, you may use the appropriate mgf provided in notes or text* 
+
+c. Consider 15 independent Taco Montes customers. Let the RV Y be the number
+of hungry customers who wait more than 12 minutes to receive their tacos.
+
+    i.  Provide an appropriate probability distribution for modeling Y 
+    (i.e., specify $Y \sim$ DistributionName(appropriate parameter(s) and their values)).
+    
+    ii. Write a probability statement, and a mathematical expression for the probability 
+    that more than 12 of the customers wait longer than 12 minutes to receive their tacos. 
+    *You do not have to evaluate the expression.*
+    
+    iii. Use R to calculte the probability in ii. and share the code you used to answer the question
+    
+    iv. **Extra Credit** Imagine an infinite line of people waiting for tacos, 
+    and define the customer place in line by 1 (first in line), 2 (second in line), 3 (third in line), etc.
+    Let Z be the place in line for which this particular customer is the 5th who waits more than 12 minutes to get their tacos.
+    Provide a reasonable distribution for modeling Z, and find $P(Z > 10)$ — you may use R, but share your code.
+
+\hrule
+## Solution
+
+
+
+
+
+
+
+
+# Problem 2
+## Statement
+Suppose two people are waiting in the same line at the grocery store (i.e.,
+they will be checked out by the same cashier). Let X be the time at which the first
+person in line pays for their items and let Y be the time at which the second person
+in line pays for their items. Note that these random variables represent the time
+of payment, not the time spent in line. The joint distribution of X and Y is given
+by
+$$
+f_{X,Y}(x,y) = \begin{cases}
+\lambda^2e^{-\lambda y} & ? \\
+0 & otherwise
+\end{cases}
+$$
+
+*Without doing any calculations*, choose the support that you belive would be reasonable for this situation
+and *thouroughly explain your reasoning*.
+
+\begin{center}
+(a) $0 < x < \infty, \sp 0 < y < \infty$ \quad (b) $0 < x < y < \infty$ \quad (c) $0 < y < x < \infty$ \quad (d) $0 < y < \infty$
+\end{center}
+
+\hrule
+## Solution
+
+
+
+# Problem 3
+## Statement
+
+Suppose the daily number of hours, X, a teenager watches television, and
+the daily number of hours, Y, they spend on homework can be modeled with the joint pdf
+
+$$f_{X,Y}(x,y) = \begin{cases}
+xye^{-(x+y)} & x > 0, y > 0\\
+0 & otherwise
+\end{cases}$$
+
+a. Are $X, Y$ independent? Why or why not?
+
+b. Given what $X$ and $Y$ represent, does your answer in (a) seem realistic? Explain
+
+c. What is the probability that a teenager spends less than half the time 
+doing homework than they do watching television, but less than six hours
+watching television? Provide the final integral for finding this probability, but
+DO NOT actually evaluate the integral. *For full credit, Include a well-labeled 
+picture of the support and the region of integration of interest!*
+
+\hrule
+## Solution
+
+
+
+
+
+
+
+
+# Problem 4
+## Statement
+Let X represent the time in years until a randomly selected watch quits
+working and let Y represent the amount of measurement error for a watch in minutes
+(i.e., the amount of time, in minutes, a watch is off from the exact time). Assume
+the two random variables are statistically independent (even though this may not be realistic).
+Suppose $X \sim Exponential(\beta = 2)$ and $Y \sim Uniform(-1, 1)$
+
+
+a. Give the joint distribution $f_{X, Y}(x,y)$
+
+b. Find, $F_{X, Y}(x,y)$ *Be sure to include ALL regions of interest*
+
+c. **Extra Credit** Find $E(Y^2X^3)$
+
+\hrule
+## Solution
+
+
+
+
+
+
+# Problem 5
+## Statement
+
+A three parameter gamma distribution can be defined by incorporating a 'location'
+parameter shift to the distribution with pdf
+
+$$f(x) = \frac{1}{\Gamma(\alpha)\beta}\left(\frac{x- r}{\beta}\right)^{\alpha - 1} e ^{-(x-r)/\beta} I _{r, \infty}(x)$$
+
+What are the restrictions on the paramters, $\alpha, \beta,$ and $r$?
+Clearly explain your reasoning for each parameter

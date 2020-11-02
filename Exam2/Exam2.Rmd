@@ -161,7 +161,22 @@ picture of the support and the region of integration of interest!*
 ## Solution
 
 
+a. Yes they are independent. The supports factor into a rectangle that is the first quadrant in $\mathbb{R}^2$
+The pmf can be factored into $g(x) = xe^{-x}$ and $h(y) = ye^{-y}$. So we show it factors:
+$g(x)h(y) = xe^{-x}ye^{-y} = xy e^{-x - y} = xy e^{-(x + y)} = f_{X,Y}(x,y)$
+Then by factorization theorem X independent of Y.
 
+b. No this doesn't make sense. With this model they can spend 15 hrs watching TV and another 15 doing homework.
+This doesn't make sense since the last time I checked there were only 24 hours in a day.
+So physically $x + y \leq 24$ is how it should be (this would not have a rectangular domain and thus not independent).
+X and Y are mutually exclusive you can't be doing both at once so they can't be independent
+since one affects how much of the other you can do.
+
+c. 
+![Region of integration](region.png){width=50%}
+
+So we are integrating over the region shown in figure 1. So we have
+$$P(Y < 1/2X, X < 6) = \int_0^6 \int_0^{1/2x} xye^{-(x + y)} dy dx$$
 
 
 

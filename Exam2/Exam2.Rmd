@@ -48,10 +48,53 @@ of hungry customers who wait more than 12 minutes to receive their tacos.
 ## Solution
 
 
+a. So we know that $\phi_{0.5} = 12 \implies F(12) = 0.5$. So we can solve for the parameter $\beta$
+
+\begin{align*}
+F(x) = 0.5 &= \int_{0.5}^{12} \frac{1}{\beta} e^{-x/\beta}\\
+&= \Eval{- e^{-x/\beta}}{0}{12}\\
+0.5 &= 1 - e^{-12/\beta}\\
+e^{-12/\beta} &= 0.5 \\
+-12/\beta &= \ln(0.5)\\
+\beta &= -12/\ln(0.5) = 17.31
+\end{align*}
+
+We know that the expected value (mean) of an exponential distribution is $\beta$
+so the mean wait time of a Taco Montes customer is 17.31 minutes.
+
+We can also verify that this is the right beta value by using it to compute the median:
+
+```{R}
+b <- -12/log(0.5)
+qexp(p = 0.5, rate = 1/b)
+```
 
 
+b. We know that the MGF of an exponential distribution is $m_x(t) = (1-\beta t)^-1$.
+We also know that $E(X) = \frac{d}{dt} \Eval{m_X(t)}{t = 0}{}$ and we computed $\beta = 17.31$ in the last problem
+So, $E(X) = \Eval{\frac{\beta}{(1- \beta t)^2}}{t= 0}{} = \beta = 17.31$ minutes which is the same as we computed in a.
 
+c. 
 
+    i. So this is a yes-no scenario: did they wait more than 12 minutes yes or no. And we are counting the number of
+    'yes' responses. So this is essentially a coin-flip scenario, so it is binomial.
+    We know that $\phi_{0.5} = 12$ so half the customers wait more than 12 minutes.
+    So $p = 0.5$ and there are $15$ customers, so $n = 15$.
+    So $Y \sim Binomial(n = 15, p = 0.5)$
+    
+    ii. We are looking for $P(Y \geq 12) = 1 - P(Y < 12) = 1 - P(Y \leq 11)$ where the last simplification
+    follows from $Y$ being discrete. We can write this mathematically as:
+    $$P(Y \geq 12) = 1 - \sum_{y = 1}^{11} {15 \choose y}*0.5^y*0.5^{15-y} = 1 - 0.5^{15} \sum_{y = 1}^{11} {15 \choose y} $$
+    Where the value inside the summation is the pdf of a binomial distribution of $n = 15, p = 0.5$
+    
+    iii. To compute this we can use the pbinom function
+    
+    ```{R}
+    ans <- 1 - pbinom(q = 11, prob = 0.5, size = 15)
+    ans
+    ```
+    
+    iv. TODO
 
 
 # Problem 2
@@ -79,7 +122,19 @@ and *thouroughly explain your reasoning*.
 \hrule
 ## Solution
 
+The most reasonable solution is (b) $0 < x < y < \infty$. Since they are waiting in the same line,
+the first person in line should be checked out first person in line (the person corresponding to the variable $X$)
+would be checked out first. So the first person is checked out before the second $\implies x < y$.
+Then they cannot be checked out in negative time so $x, y > 0$. But it is possible that the cashier is 
+extremely slow, so it could take any amount of time until they actually get checked out. 
+So the most we can say is they will eventually be checked out (10 minutes, next week, next millenium we don't know)
+so $x, y < \infty$. Thus combining this we get $0 < x < y < \infty$. 
 
+We can also use these assumptions to rule out the other options. (a) does not account for
+$x < y$ so the second person in line could be checked out before the first which doesn't happen (no cutting in line.
+(c) says that the second person must be checked out before the first which also doesn't happen (no cutting in line).
+(d) says nothing about $x$ so $x$ could be checked out absolutly whenever, including negative time and $-\infty$ which
+makes no sense. So it must be (b)
 
 # Problem 3
 ## Statement

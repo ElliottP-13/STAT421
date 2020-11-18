@@ -42,6 +42,38 @@ reflection in $\approx$ 5-10 sentences.**
 \hrule
 ## Solution
 
+
+I watched the video on Geometric and Exponential Distributions.
+
+a. The first problem was a geometric distribution. $X \sim Geom(p = 0.2)$.
+The problem was defined in a way that makes sense, counting the number of ice slabs a robot could cross. 
+It could crash on the 1st, or never crash so geometric makes sense. 
+I really liked the exponential distribution problem. 
+They modeled an insider trading scenario where a company is likely to default on a loan on an exponential distribution ($X \sim Exp(\beta = 14)$).
+I know absolutely nothing about trading or money, but the premise seems reasonable.
+Although I would think that the company would be more likely to default later in the period instead of earlier.
+Since exponential is large close to zero, most of the probability is acquired at the beginning, and as seen in part b
+the company is likely to default earlier. I would guess they would default later once the company was closer
+to deadline and realize it was impossible to make it. But this is nit-picky. I think given that it follows an exponential
+distribution the problem was good. 
+
+b. As I mentioned in part a. I really liked the insider trading problem.
+I thought it was an entirely new problem that we had never seen anything like and was just interesting.
+I liked the truncated exponential distribution as it was new and clever distribution to apply.
+Also the questions were non-trivial, I liked the dedication to do IBP. It was just a hard problem
+that was applied in a way that we have never covered before and was just interesting. 
+
+c. No a probability model cannot perfectly model a real world scenario. Partially that is given
+in the definition of a model. You construct a model to get close to a real world scenario
+without dealing with the entire thing. But also, the models covered in this class are fairly simplistic.
+There are many assumptions made about independence and how trials behave. 
+For instance it might not be that $p$ is constant for geometric or binomial for every trial. Also there are lots of
+extraneous factors that can change outcomes of experiment and affect the distributions.
+It is important to communicate the assumptions so others know what factors we choose to ignore.
+This helps prevent misinformation/misinterpretation of the models and reminds us that it is only a model.
+
+
+
 # Problem 2
 ## Statement
 

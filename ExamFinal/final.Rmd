@@ -1,0 +1,155 @@
+---
+title: "Final Exam"
+author: "Elliott Pryor"
+date: "11/25/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 4, fig.height = 4)
+```
+
+\renewcommand{\sp}{\; \;}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+
+# Problem 1
+## Statement
+Choose one of the distribution videos of your peers to watch and critique. The
+only restriction is that this should be a group different from yours and from the project
+group you peer reviewed. You can find the videos here https://www.youtube.com/
+playlist?list=PLMd58R18w9hcUaMGJGXRV0GFqOZ27Kt5w and https://spark.adobe.com/
+video/GcMjER5KZAZLp. Answer the following questions.
+
+a. For each distribution discussed: State the distribution that was used in the
+problem. Was the distributions used correctly with respect to their support? That
+is, was the random variable defined in a way that it could be reasonably modeled
+with the distribution? Briefly explain why or why not. **Make sure you answer these
+questions for both distributions!**
+
+b. Choose the problem you found the most interesting out of the problems
+presented by the group. What made this particular problem more interesting than
+the other(s)?
+
+
+c. Briefly reflect on what you learned with respect to how probability distributions (pmf/pdfs) are used for modeling random events in the real world as a result of
+participating in the distributions project. Specifically, can a probability model perfectly represent a random event that arises in the real world? Why is communicating
+model assumptions (i.e., assumptions that are required if a particular probability
+distribution is used) so important when applying probability models to real world
+problems? **There is no right answer here, please provide an honest and thoughtful
+reflection in $\approx$ 5-10 sentences.**
+
+\hrule
+## Solution
+
+# Problem 2
+## Statement
+
+Let X be a random variable with $pdf \sp f_X(x) = kX^2 I_{(0,2)}(x)$ where $k$ is a constant
+
+a. Find $k$
+
+b. Let $Y = \frac{1}{X}$
+
+    i. Draw a well-labeled graph showing the transformation from $\mathcal{X}$ to $\mathcal{Y}$ and state $\mathcal{Y}$
+    
+    ii. Find pdf $f_Y(y)$
+    
+    iii. *Extra Credit* What is the name of the distribution assumed for $X$.
+    
+\hrule
+## Solution
+
+
+
+
+
+
+
+
+# Problem 3
+## Statement
+A submarine is missing and is presumed to have equal probability of being
+sunk in one of three Regions off of the Gulf Coast. If the submarine is actually down in
+Region i, let the probability of a successful search in that region be equal to $1 - \alpha_i$ for
+i = 1, 2, 3. For example, the probability a search of Region 1 will recover the sub, given
+that it sunk in Region 1 is $1 - \alpha_1$. What is the conditional probability the submarine is
+sunk in Region 1, given that the search of Region 1 was unsuccessful? Be sure to clearly
+define events and probabilities!
+\hrule
+## Solution
+
+
+
+
+# Problem 4
+## Statement
+Let X and Y be random variables, where X is the number of workplace injuries
+occurring in a factory on any given day and Y is the level of activity in the factory. The
+joint distribution of X and Y is given by
+
+$$f_{XY}(x,y) = \begin{cases}
+\frac{e^{-y}y^x}{6x!} & 0 < y < 6, \sp x = 0, 1, 2, ...\\
+0 & otherwise
+\end{cases}$$
+
+a. Are X, Y statistically independent? Explain.
+
+b. One can show that $Y \sim Uniform(0,6)$ and $X | Y \sim Poisson(\lambda = y)$ if $y \in (0,6)$
+Use that information to find: 
+
+    i. E(X|Y = y)
+    
+    ii. Var(X|Y = y)
+    
+    iii. E(Y)
+    
+    iv. Var(Y)
+    
+c. Show $E[XY] = 12$ show each step clearly
+
+d. Show $Var(X) = 6$ show each step clearly.
+\hrule
+## Solution
+
+
+
+
+
+
+
+
+# Problem 5
+## Statement
+A coal-operated power plant has two smokestacks: one with a cleaning device
+known as a **scrubber** and another without a scrubber. An environmental engineer measures
+the amount of pollutant in each smokestack by weighing the particulate pollution in a
+random sample of a fixed volume of air. Let X be the amount of pollutant in a sample
+from the smokestack **without the scrubber**, and Y be the amount of pollutant in a sample
+of the same volume from the smokestack **with the scrubber**. The joint distribution can be
+written as,
+
+$$f_{XY}(x,y) = \begin{cases}
+1 & 0 \leq x \leq 2, \sp 0 \leq y \leq 1, \sp 2y \leq x\\
+0 & otherwise
+\end{cases}$$
+
+Find the probability that the sample taken from the smokestack **with the scrubber** shows
+a reduction in the amount of pollutant by one-third or more (as compared to the sample
+taken from the smokestack **without the scrubber**).
+
+a. Make a clearly labeled graph to show the joint support of $f_{XY}(x,y)$ and the region of interest for finding the probability
+
+b. Find the probability of interest *using integration*. **Make sure you have written a clear probability statement using proper notation along with its corresponding integral**.
+
+c. *Extra Credit*. Explain how/why this particular problem can be solved without using integration, and find the probability using geometry.
+\hrule
+## Solution
+
+
+
+
+
+
+
+

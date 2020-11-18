@@ -51,7 +51,7 @@ of hungry customers who wait more than 12 minutes to receive their tacos.
 a. So we know that $\phi_{0.5} = 12 \implies F(12) = 0.5$. So we can solve for the parameter $\beta$
 
 \begin{align*}
-F(x) = 0.5 &= \int_{0.5}^{12} \frac{1}{\beta} e^{-x/\beta}\\
+F(x) = 0.5 &= \int_{0}^{12} \frac{1}{\beta} e^{-x/\beta}\\
 &= \Eval{- e^{-x/\beta}}{0}{12}\\
 0.5 &= 1 - e^{-12/\beta}\\
 e^{-12/\beta} &= 0.5 \\
@@ -94,7 +94,15 @@ c.
     ans
     ```
     
-    iv. TODO
+    iv. We  would use a negative binomial distribution. We are waiting for the rth success.
+    So $Z \sim NegBinom(r = 5, p = 0.5)$ Since we are waiting for the 5th success, and 
+    $p$ is the same as before. 
+    Then $P(Z > 10) = 1 - P(Z \leq 10)$ We compute this with R
+    
+    ```{R}
+    # Find P(Y < = y) --> pnbinom(q = y-r, size = r, prob = p)
+    1 - pnbinom(q = 10-5, size = 5, prob = 0.5)
+    ```
 
 
 # Problem 2
@@ -200,7 +208,40 @@ c. **Extra Credit** Find $E(Y^2X^3)$
 \hrule
 ## Solution
 
+a. Since $X, Y$ are independent we know that $f_{X,Y}(x,y) = f_X(x)f_Y(y)$ on the joint support. So
+$$f_{X,Y}(x,y) = 1/4 e^{-x/2} I_{(0, \infty)}(x) I_{[-1, 1]}(y)$$
 
+b. So on the joint support 
+\begin{align*}
+F_{X,Y}(x,y) &= \int_{-1}^y \int_0^x 1/4 e^{-a/2} da db \\
+&= \int_{-1}^y \left( \Eval{-1/2e^{-a/2}}{0}{x} \right) db \\
+&= \int_{-1}^y \left( -1/2 e^{-x/2} + 1/2 \right) db\\
+&= -1/2 y e^{-x/2} + 1/2y - 1/2e^{-x/2} + 1/2
+\end{align*}
+
+Then as $y \to \infty$
+$$F_{X,Y}(x,y) = \int_{-1}^{1} \int_0^x 1/4 e^{-a/2} da db= \int_{-1}^{1} -1/2 e^{-x/2} + 1/2 db = 1 - e^{-x/2}$$
+
+Then $x$ cannot exceed its bound since it is $\infty$ so we have:
+$$F_{X,Y}(x,y) = \begin{cases}
+-1/2 y e^{-x/2} + 1/2y - 1/2e^{-x/2} + 1/2 & -1 \leq y \leq 1, \sp 0 < x < \infty\\
+1 - e^{-x/2} & y > 1, \sp 0 < x < \infty\\
+0 & otherwise
+\end{cases}$$
+
+
+c. So to do this we just have to integrate.
+
+\begin{align*}
+E(Y^2X^3) = \int \int y^2 x^3 f_{X,Y}(x,y) dx dy &= \int_{-1}^1 \int_0^\infty y^2 x^3 1/4 e^{-x/2} dx dy\\
+&= 1/4 \int_{-1}^1 y^2 \left(\int_0^\infty x^3 e^{-x/2} dx \right) dy \quad \quad \text{Looks like Gamma(4, 2)}\\
+&= 1/4 \int_{-1}^1 y^2 \Gamma(4) * 2^4 \left(\int_0^\infty \frac{1}{\Gamma(4)2^4}x^3 e^{-x/2} dx \right) dy\\
+&= 1/4 \int_{-1}^1 y^2 \Gamma(4) * 2^4 dy \quad \quad \text{Use: } \Gamma(n) = (n-1)! \sp n \in \mathbb{Z}\\
+&= 1/4 \int_{-1}^1 y^2 (6 * 16) dy\\
+&= 24  \int_{-1}^1 y^2 dy\\
+&= 24 (\Eval{1/3 y^3}{-1}{1})\\
+&= 24 * 2/3 = 12
+\end{align*}
 
 
 
@@ -211,7 +252,24 @@ c. **Extra Credit** Find $E(Y^2X^3)$
 A three parameter gamma distribution can be defined by incorporating a 'location'
 parameter shift to the distribution with pdf
 
+
 $$f(x) = \frac{1}{\Gamma(\alpha)\beta}\left(\frac{x- r}{\beta}\right)^{\alpha - 1} e ^{-(x-r)/\beta} I _{r, \infty}(x)$$
 
 What are the restrictions on the paramters, $\alpha, \beta,$ and $r$?
 Clearly explain your reasoning for each parameter
+
+
+## Solution
+So this is still a gamma distribution, but 'shifted' so that the support is $S_x = (r, \infty)$
+instead of the typical support $S = (0, \infty)$. So $\alpha, \beta$ remain unchanged
+so the constraint $\alpha, \beta > 0$ that is true for the non-shifted gamma distribution still holds.
+Then $r$ can be any finite number ($r \in \mathbb{R}$) as it just shifts the distribution.
+
+We can also think about this in terms of a new random variable $z = x - r$.
+Then $Z \sim Gamma(\alpha, \beta)$. The support $S_z = (0, \infty)$ which 
+implies $S_x = (r, \infty)$ because $z = 0 \implies x = r$ which is what we found above.
+Then clearly the $\alpha, \beta$ parameters are unchanged. 
+
+So in conclusion: $\alpha > 0$, $\beta > 0$, $r \in \mathbb{R}$.
+
+

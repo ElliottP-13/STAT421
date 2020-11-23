@@ -24,8 +24,8 @@ video/GcMjER5KZAZLp. Answer the following questions.
 a. For each distribution discussed: State the distribution that was used in the
 problem. Was the distributions used correctly with respect to their support? That
 is, was the random variable defined in a way that it could be reasonably modeled
-with the distribution? Briefly explain why or why not. **Make sure you answer these
-questions for both distributions!**
+with the distribution? Briefly explain why or why not. *Make sure you answer these
+questions for both distributions!*
 
 b. Choose the problem you found the most interesting out of the problems
 presented by the group. What made this particular problem more interesting than
@@ -36,8 +36,8 @@ c. Briefly reflect on what you learned with respect to how probability distribut
 participating in the distributions project. Specifically, can a probability model perfectly represent a random event that arises in the real world? Why is communicating
 model assumptions (i.e., assumptions that are required if a particular probability
 distribution is used) so important when applying probability models to real world
-problems? **There is no right answer here, please provide an honest and thoughtful
-reflection in $\approx$ 5-10 sentences.**
+problems? *There is no right answer here, please provide an honest and thoughtful
+reflection in $\approx$ 5-10 sentences.*
 
 \hrule
 ## Solution
@@ -87,13 +87,30 @@ b. Let $Y = \frac{1}{X}$
     
     ii. Find pdf $f_Y(y)$
     
-    iii. *Extra Credit* What is the name of the distribution assumed for $X$.
+    iii. **Extra Credit** What is the name of the distribution assumed for $X$.
     
 \hrule
 ## Solution
 
 
+a. We know that integrating over the entire support of X, should yeild an answer of 1.
+So, $1 = \int_0^2 kx^2 dx = k \int_0^2 x^2 dx = k \left(\Eval{1/3x^3}{0}{2} \right) = k (8/3)$.
+So $k = 3/8$. 
 
+b. 
+
+    i. We know that $x \in (0,2)$ so $0 < x < 2$. Then with $y = 1/x$ we have $1/0 > y > 1/2$
+    since it is an open interval and $x > 0$ $1/0$ approaches $\infty$. So we have $y \in (1/2, \infty)$.
+    ![Transformation of X to Y](q2_graph){width=50%}
+    
+    ii. Clearly y is strictly decreasing on $x = (0, 2)$. So we can use the method of univariate transformations for monotone functions from our notes.
+    We have that $Y = g(X)$ then $f_Y(y) = -f_x(g^{-1}(y))\left(\frac{d}{dy}(g^{-1}(y))\right)$.
+    In our case we have $g = 1/X$ and thus $g^{-1}(y) = 1/Y$. Then $\frac{d}{dy}(g^{-1}(y) = -1/Y^2$.
+    So plugging all this in we get $f_Y(y) = -(8/3)(1/y)^2(-1/y^2) = (8/3)(1/y^4)$.
+    So $f_Y(y) = (8/3)(1/y^4) I_{(1/2, \infty)}(y)$
+    
+    
+    iii. **Extra Credit** TODO
 
 
 
@@ -110,6 +127,28 @@ sunk in Region 1, given that the search of Region 1 was unsuccessful? Be sure to
 define events and probabilities!
 \hrule
 ## Solution
+
+Let $X$ be the random variable indicating if the search was successful. 
+We know that $X \sim Binom(1 - \alpha_1)$. We say 0 indicates unsuccessful search and 1 indicates successful search.
+Let $Y$ be the random variable indicating what region the ship was sunk in. 
+
+We are searching for $P(Y = 1 | X = 0)$. This is a basic application of Bayes' Rule
+$$P(Y = 1 | X = 0) = \frac{P(X = 0 | Y = 1) P(Y = 1)}{P(X = 0 | Y = 1) P(Y = 1) + P(X = 0 | Y = 2) P(Y = 2) + P(X = 0 | Y = 3) P(Y = 3)}$$
+Since it is equally likely to be in any of the regions we know that $P(Y = 1) = P(Y = 2) = P(Y=3) = 1/3$.
+For $P(X = 0 | Y = i)$ where $i = 2,3$ we know this must be 1 as there cannot be a successful search if the ship isn't in the region.
+So we are left with:
+
+$$
+P(Y = 1 | X = 0) = \frac{1/3 \cdot P(X = 0 | Y = 1)}{1/3\left(P(X = 0 | Y = 1) + 2\right)} = \frac{P(X = 0 | Y = 1)}{P(X = 0 | Y = 1) + 2}
+$$
+
+We then know the probability of an unsuccessful search in the region where the sink is: $1 - P(success)= 1 - (1- \alpha_1) = \alpha_1$.
+So we get 
+
+$$
+P(Y = 1 | X = 0) = \frac{\alpha_1}{\alpha_1 + 2}
+$$
+
 
 
 
@@ -146,6 +185,29 @@ d. Show $Var(X) = 6$ show each step clearly.
 
 
 
+a. No, they are not independent. It is not possible to factor the term $y^x$ into the product of two functions of one variable.
+So by the factorization theorem they are not independent
+
+b. 
+    
+    i. $E(X | Y = y)$ is just $y$. This is easy to see if we let $Z = X |Y = y \sim Poisson(\lambda = y)$.
+    So we are looking for $E(Z)$ which is expectation of a Poisson distribution, which is just $\lambda$. So in our case,
+    $\lambda = y$. Thus $E(X | Y = y) = y$ for $y \in (0,6)$ otherwise 0.
+    
+    ii. $Var(X | Y = y)$ is also just $y$. Using the same $Z$ as above, we are looking for variance of a Poisson
+    distribution, which is $\lambda = y$. Thus $Var(X | Y = y) = y$ for $y \in (0,6)$ otherwise 0.
+    
+    iii. We know that $Y \sim Uniform(0,6)$ so, $E(Y)$ is the midpoint of this interval. So $E(Y) = 3$.
+    
+    iv. We know that $Y \sim Uniform(0,6)$ so, $Var(Y)$ is $\frac{(6-0)^2}{12} = 36/12 = 3$.
+    
+c. We want to find $E(XY)$. We know from class that $E(XY) = E_y(Y E_x(X |Y))$ by iterated expectation. 
+So we know from b.i, that $E_x(X | Y)$ is just $y$. So now we are looking for $E_y(Y^2) = Var(Y) + (E(Y))^2$.
+Both of which we found in part b. So $E(XY) = E(Y^2) = 3 + 3^2 = 12$
+
+d. We want to find $Var(X)$. By theorem 5.15 we know that $Var(X) = E_Y(Var(X|Y)) + Var_Y(E(X|Y))$. 
+We know from part b that $Var(X|Y) = Y$ and $E(X|Y) = Y$. So we are looking for $E(Y) + Var(Y)$.
+Thus we have $Var(X) = E(Y) + Var(Y) = 3 + 3 = 6$
 
 
 
@@ -154,11 +216,11 @@ d. Show $Var(X) = 6$ show each step clearly.
 # Problem 5
 ## Statement
 A coal-operated power plant has two smokestacks: one with a cleaning device
-known as a **scrubber** and another without a scrubber. An environmental engineer measures
+known as a *scrubber* and another without a scrubber. An environmental engineer measures
 the amount of pollutant in each smokestack by weighing the particulate pollution in a
 random sample of a fixed volume of air. Let X be the amount of pollutant in a sample
-from the smokestack **without the scrubber**, and Y be the amount of pollutant in a sample
-of the same volume from the smokestack **with the scrubber**. The joint distribution can be
+from the smokestack *without the scrubber*, and Y be the amount of pollutant in a sample
+of the same volume from the smokestack *with the scrubber*. The joint distribution can be
 written as,
 
 $$f_{XY}(x,y) = \begin{cases}
@@ -166,22 +228,35 @@ $$f_{XY}(x,y) = \begin{cases}
 0 & otherwise
 \end{cases}$$
 
-Find the probability that the sample taken from the smokestack **with the scrubber** shows
+Find the probability that the sample taken from the smokestack *with the scrubber* (Y) shows
 a reduction in the amount of pollutant by one-third or more (as compared to the sample
-taken from the smokestack **without the scrubber**).
+taken from the smokestack *without the scrubber* (X)).
 
 a. Make a clearly labeled graph to show the joint support of $f_{XY}(x,y)$ and the region of interest for finding the probability
 
-b. Find the probability of interest *using integration*. **Make sure you have written a clear probability statement using proper notation along with its corresponding integral**.
+b. Find the probability of interest **using integration**. *Make sure you have written a clear probability statement using proper notation along with its corresponding integral*.
 
-c. *Extra Credit*. Explain how/why this particular problem can be solved without using integration, and find the probability using geometry.
+c. **Extra Credit**. Explain how/why this particular problem can be solved without using integration, and find the probability using geometry.
+
 \hrule
 ## Solution
 
 
 
+a. Graph of the region of interest and the constraints. The yellow marks the joint support. The green marks region of interest within the support.
+
+![Region of integraton](q5_region){width=50%}
+
+b. 
+\begin{align*}
+    P(Y \leq 1/3 X) &= \int_0^2 \int_0^{x/3} 1 dy dx\\
+    &= \int_0^2 \Eval{y}{0}{x/3} dx\\
+    &= \int_0^2 x/3 dx\\
+    &= \Eval{x^2/6}{0}{2}\\
+    &= 4/6 = 2/3
+\end{align*}
 
 
-
-
+c. This can be done geometrically since the pmf is constant across the region of integration. 
+So we are essentially finding the area of the triangle with base 2 height 2/3. So area is $1/2 bh = 1/2 * 2 * 2/3 = 2/3$ as expected.
 
